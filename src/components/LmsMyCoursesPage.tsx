@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import imgCloseupShotBoyDoctorWearingSanitaryMasks from "figma:asset/da93045379979112d51f82f7050c64fddce75e5b.png";
 import imgFullShotWomenWorkingTogether from "figma:asset/980ca31a37e931370485260965df813062d1f2fc.png";
 import imgEmployeeWorkingMarketingSetting from "figma:asset/96776002ef849fba844a97b648112be288e4db0d.png";
@@ -7,11 +8,8 @@ import imgManWorkingEnvironment from "figma:asset/c5c2c4a655c9ea3db3ae9b60fac046
 import { LmsSidebar } from './LmsSidebar';
 import { Navigation } from './Navigation';
 
-interface LmsMyCoursesPageProps {
-  onNavigate: (page: string) => void;
-}
-
-export function LmsMyCoursesPage({ onNavigate }: LmsMyCoursesPageProps) {
+export function LmsMyCoursesPage() {
+  const navigate = useNavigate();
   const courses = [
     {
       id: 1,
@@ -73,14 +71,14 @@ export function LmsMyCoursesPage({ onNavigate }: LmsMyCoursesPageProps) {
   return (
     <div className="bg-white min-h-screen w-full pb-16 md:pb-20">
       {/* Navigation */}
-      <Navigation currentPage="lms-my-courses" onNavigate={onNavigate} />
+      <Navigation />
 
       {/* Main Content Container */}
       <div className="pt-8 md:pt-12 px-4 md:px-6">
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] xl:grid-cols-[400px_1fr] gap-6 lg:gap-8">
             {/* Left Sidebar */}
-            <LmsSidebar activePage="my-courses" onNavigate={onNavigate} />
+            <LmsSidebar activePage="my-courses" />
 
             {/* Right Content Area */}
             <div className="space-y-8">
@@ -167,7 +165,7 @@ export function LmsMyCoursesPage({ onNavigate }: LmsMyCoursesPageProps) {
                           />
                         </div>
                         <button
-                          onClick={() => onNavigate('lms-course-viewer')}
+                          onClick={() => navigate('/lms-course-viewer')}
                           className={`w-full font-['Montserrat:Bold',sans-serif] text-[14px] py-2 rounded-[10px] transition-all duration-300 ${
                             course.buttonStyle === 'outline'
                               ? 'bg-white border border-[#0c1733] text-[#2e92c6] hover:bg-[#f5f5f5]'

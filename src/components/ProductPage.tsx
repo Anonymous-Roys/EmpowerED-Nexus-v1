@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import imgBookCompositionWithReadingGlassesBook2 from "figma:asset/7325ffba98817243876f345920a4064617042364.png";
 import imgPortraitNurseScrubsClinic1 from "figma:asset/3dbb7634cd18157b436775c0b14d73d0ebcba9dd.png";
 import imgCloseupShotBoyGettingCheckup1 from "figma:asset/ae8adf0a0c25fc10ee3d4efd217c5e5175620249.png";
@@ -19,16 +20,16 @@ interface Product {
 interface ProductCardProps {
   product: Product;
   currency: 'XAF' | 'USD';
-  onProductClick: (productId: number) => void;
 }
 
-function ProductCard({ product, currency, onProductClick }: ProductCardProps) {
+function ProductCard({ product, currency }: ProductCardProps) {
+  const navigate = useNavigate();
   const price = currency === 'XAF' ? product.priceXAF : product.priceUSD;
   
   return (
     <div 
       className="bg-white rounded-[20px] border border-black shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden transition-all duration-300 hover:shadow-[0px_6px_12px_0px_rgba(0,0,0,0.35)] hover:scale-105 cursor-pointer"
-      onClick={() => onProductClick(product.id)}
+      onClick={() => navigate(`/products/${product.id}`)}
     >
       {/* Product Image */}
       <div className="h-[220px] overflow-hidden rounded-tl-[20px] rounded-tr-[20px]">
@@ -55,11 +56,7 @@ function ProductCard({ product, currency, onProductClick }: ProductCardProps) {
   );
 }
 
-interface ProductPageProps {
-  onNavigate: (page: string, productId?: number) => void;
-}
-
-export function ProductPage({ onNavigate }: ProductPageProps) {
+export function ProductPage() {
   const [currency, setCurrency] = useState<'XAF' | 'USD'>('XAF');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('popularity');
@@ -268,7 +265,6 @@ export function ProductPage({ onNavigate }: ProductPageProps) {
                     key={product.id} 
                     product={product} 
                     currency={currency}
-                    onProductClick={(productId) => onNavigate('productDetail', productId)}
                   />
                 ))}
               </div>

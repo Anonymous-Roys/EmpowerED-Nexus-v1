@@ -1,13 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import imgCloseupShotBoyDoctorWearingSanitaryMasks from "figma:asset/da93045379979112d51f82f7050c64fddce75e5b.png";
 import imgSideShotCodeEditorUsingReactJs from "figma:asset/5d967bf195cf00055fd689d0f7e86b04013330ef.png";
 import { LmsSidebar } from './LmsSidebar';
 import { Navigation } from './Navigation';
 
-interface LmsDashboardPageProps {
-  onNavigate: (page: string) => void;
-}
-
-export function LmsDashboardPage({ onNavigate }: LmsDashboardPageProps) {
+export function LmsDashboardPage() {
+  const navigate = useNavigate();
   const courses = [
     {
       id: 1,
@@ -61,14 +59,14 @@ export function LmsDashboardPage({ onNavigate }: LmsDashboardPageProps) {
   return (
     <div className="bg-white min-h-screen w-full pb-16 md:pb-20">
       {/* Navigation */}
-      <Navigation currentPage="lms-dashboard" onNavigate={onNavigate} />
+      <Navigation />
 
       {/* Main Content Container */}
       <div className="pt-8 md:pt-12 px-4 md:px-6">
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] xl:grid-cols-[400px_1fr] gap-6 lg:gap-8">
             {/* Left Sidebar */}
-            <LmsSidebar activePage="dashboard" onNavigate={onNavigate} />
+            <LmsSidebar activePage="dashboard" />
 
             {/* Right Content Area */}
             <div className="space-y-8">
@@ -84,7 +82,7 @@ export function LmsDashboardPage({ onNavigate }: LmsDashboardPageProps) {
                     </p>
                   </div>
                   <button 
-                    onClick={() => onNavigate('digital-store')}
+                    onClick={() => navigate('/products')}
                     className="bg-[#0c1733] text-white font-['Montserrat:Medium',sans-serif] text-[18px] px-8 py-3 rounded-[10px] hover:bg-[#1a2744] transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
                   >
                     Browse Courses
@@ -172,7 +170,7 @@ export function LmsDashboardPage({ onNavigate }: LmsDashboardPageProps) {
                           />
                         </div>
                         <button 
-                          onClick={() => onNavigate('lms-course-viewer')}
+                          onClick={() => navigate('/lms-course-viewer')}
                           className="w-full bg-[#0c1733] text-white font-['Montserrat:Bold',sans-serif] text-[14px] py-2 rounded-[10px] hover:bg-[#1a2744] transition-all duration-300"
                         >
                           Resume

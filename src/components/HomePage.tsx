@@ -1,11 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import imgGeminiGeneratedImageJ1L58Ij1L58Ij1L5RemovebgPreview1 from "figma:asset/33da7971b94bfdc69c6d536565c01ea1a23f660e.png";
 import { MastercardLogo } from './MastercardLogo';
 
 export function HomePage() {
+  const navigate = useNavigate();
   return (
-    <div className="bg-white min-h-screen w-full overflow-x-hidden mb-16 md:mb-20">
+    <div className="bg-white min-h-screen w-full overflow-x-hidden">
       {/* Hero Section */}
-      <main className="relative px-4 md:px-6 lg:px-0 pt-12 md:pt-16 lg:pt-20">
+      <main className="relative px-4 md:px-6 lg:px-0">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-0">
             {/* Left Content */}
@@ -54,10 +56,16 @@ export function HomePage() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
-                <button className="bg-[#4eba86] px-6 md:px-8 py-3 md:py-3.5 rounded-[8px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] font-['Montserrat:Bold',sans-serif] font-bold text-[14px] md:text-[16px] text-[rgba(255,255,255,0.85)] tracking-[0.96px] transition-all duration-300 hover:bg-[#45a878] hover:shadow-[0px_6px_8px_0px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 min-h-[44px]">
+                <button 
+                  onClick={() => navigate('/contact')}
+                  className="bg-[#4eba86] px-6 md:px-8 py-3 md:py-3.5 rounded-[8px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] font-['Montserrat:Bold',sans-serif] font-bold text-[14px] md:text-[16px] text-[rgba(255,255,255,0.85)] tracking-[0.96px] transition-all duration-300 hover:bg-[#45a878] hover:shadow-[0px_6px_8px_0px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 min-h-[44px]"
+                >
                   Request a Demo
                 </button>
-                <button className="bg-[#2e92c6] px-6 md:px-8 py-3 md:py-3.5 rounded-[8px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] font-['Montserrat:Bold',sans-serif] font-bold text-[14px] md:text-[16px] text-[rgba(255,255,255,0.85)] tracking-[0.96px] transition-all duration-300 hover:bg-[#2680b0] hover:shadow-[0px_6px_8px_0px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 min-h-[44px]">
+                <button 
+                  onClick={() => navigate('/products')}
+                  className="bg-[#2e92c6] px-6 md:px-8 py-3 md:py-3.5 rounded-[8px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] font-['Montserrat:Bold',sans-serif] font-bold text-[14px] md:text-[16px] text-[rgba(255,255,255,0.85)] tracking-[0.96px] transition-all duration-300 hover:bg-[#2680b0] hover:shadow-[0px_6px_8px_0px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 min-h-[44px]"
+                >
                   Browse Digital Products
                 </button>
               </div>

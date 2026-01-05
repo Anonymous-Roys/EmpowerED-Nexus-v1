@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import svgPaths from "../imports/svg-6d62hcom9s";
 import imgRectangle157 from "figma:asset/8c8aa3ee72847f8415de61027be421fbaf58b3c7.png";
 import imgLearning31 from "figma:asset/45ab2855983dc48aa2cbcbe5c51c57189b34e7cf.png";
@@ -288,19 +289,16 @@ const productDatabase: Record<number, ProductData> = {
   }
 };
 
-interface ProductDetailPageProps {
-  productId: number;
-  onBack: () => void;
-  onAddToCart?: (productId: number) => void;
-}
-
-export function ProductDetailPage({ productId, onBack, onAddToCart }: ProductDetailPageProps) {
+export function ProductDetailPage() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'description' | 'features' | 'requirements'>('description');
   const [selectedImage, setSelectedImage] = useState(0);
 
-  const product = productDatabase[productId];
+  const productId = id ? parseInt(id, 10) : null;
+  const product = productId ? productDatabase[productId] : null;
 
-  if (!product) {
+  if (!product || !productId) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -308,7 +306,7 @@ export function ProductDetailPage({ productId, onBack, onAddToCart }: ProductDet
             Product not found
           </h2>
           <button
-            onClick={onBack}
+            onClick={() => navigate('/products')}
             className="bg-[#4eba86] hover:bg-[#3da670] text-white font-['Barlow:SemiBold',sans-serif] text-[18px] px-8 py-3 rounded-[8px] transition-all duration-300"
           >
             Back to Store
@@ -319,9 +317,7 @@ export function ProductDetailPage({ productId, onBack, onAddToCart }: ProductDet
   }
 
   const handleAddToCart = () => {
-    if (onAddToCart) {
-      onAddToCart(productId);
-    }
+    navigate(`/checkout/${productId}`);
   };
 
   return (
@@ -342,7 +338,7 @@ export function ProductDetailPage({ productId, onBack, onAddToCart }: ProductDet
       <div className="relative z-10 max-w-[1375px] mx-auto px-6 md:px-8 py-8 md:py-12">
         {/* Back Button */}
         <button
-          onClick={onBack}
+          onClick={() => navigate('/products')}
           className="flex items-center gap-2 mb-6 font-['Montserrat:SemiBold',sans-serif] text-[16px] text-[#0c1733] hover:text-[#4eba86] transition-colors duration-300 group"
         >
           <svg

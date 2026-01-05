@@ -1,13 +1,14 @@
 import { useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import svgPaths from "../imports/svg-dnrtjvlofj";
 
 interface DropdownMenuProps {
   onClose: () => void;
-  onNavigate: (page: string) => void;
 }
 
-export function DropdownMenu({ onClose, onNavigate }: DropdownMenuProps) {
+export function DropdownMenu({ onClose }: DropdownMenuProps) {
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -24,11 +25,11 @@ export function DropdownMenu({ onClose, onNavigate }: DropdownMenuProps) {
   }, [onClose]);
 
   const menuItems = [
-    { label: 'LMS Dashboard', active: false, href: '#lms-dashboard' },
-    { label: 'Podcast', active: false, href: '#podcast' },
-    { label: 'Comm.. Foru', active: true, href: '#community-forum' },
-    { label: 'Blog', active: false, href: '#blog' },
-    { label: 'Privacy Poli', active: false, href: '#privacy-policy' },
+    { label: 'LMS Dashboard', path: '/lms-dashboard' },
+    { label: 'Podcast', path: '/podcast' },
+    { label: 'Comm.. Foru', path: '/community-forum' },
+    { label: 'Blog', path: '/blog' },
+    { label: 'Privacy Poli', path: '/privacy-policy' },
   ];
 
   return (
@@ -58,25 +59,20 @@ export function DropdownMenu({ onClose, onNavigate }: DropdownMenuProps) {
       {/* Menu Items */}
       <div className="py-[2px]">
         {menuItems.map((item, index) => (
-          <a
+          <Link
             key={index}
-            href={item.href}
-            onClick={(e) => {
-              e.preventDefault();
-              onClose();
-              // Handle navigation here
-              onNavigate(item.label);
-            }}
+            to={item.path}
+            onClick={onClose}
             className={`
               block px-3 py-[5px] font-['Montserrat:Regular',sans-serif] font-normal text-[14px] leading-[22px] transition-all duration-200
-              ${item.active 
+              ${location.pathname === item.path 
                 ? 'bg-[#4eba86] text-white hover:bg-[#45a878]' 
                 : 'bg-white text-[#262626] hover:bg-[#f5f5f5]'
               }
             `}
           >
             {item.label}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

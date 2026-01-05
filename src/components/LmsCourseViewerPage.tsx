@@ -1,11 +1,7 @@
 import { ChevronDown, Bot, Camera } from 'lucide-react';
 import imgEllipse8 from "figma:asset/07707dd512b6f2bb896dba0ce723c60a867dbf7e.png";
 
-interface LmsCourseViewerPageProps {
-  onNavigate: (page: string) => void;
-}
-
-export function LmsCourseViewerPage({ onNavigate }: LmsCourseViewerPageProps) {
+export function LmsCourseViewerPage() {
   return (
     <div className="bg-white min-h-screen w-full">
       {/* Main Content */}

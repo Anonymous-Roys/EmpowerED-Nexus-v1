@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import svgPaths from "../imports/svg-qpcvtlh930";
 import imgWhatsAppImage20251022At014430RemovebgPreview1 from "figma:asset/21ec550d7fea5dd192a81945d837f7f161ff4ae5.png";
@@ -70,21 +71,29 @@ const checkoutProductData: Record<number, CheckoutProduct> = {
   }
 };
 
-interface CheckoutPageProps {
-  productId: number;
-  onBack: () => void;
-}
-
-export function CheckoutPage({ productId, onBack }: CheckoutPageProps) {
+export function CheckoutPage() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'mobile'>('card');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   
-  const product = checkoutProductData[productId];
+  const productId = id ? parseInt(id, 10) : null;
+  const product = productId ? checkoutProductData[productId] : null;
   
-  if (!product) {
+  if (!product || !productId) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p>Product not found</p>
+        <div className="text-center">
+          <p className="font-['Montserrat:Bold',sans-serif] text-[24px] text-black mb-4">
+            Product not found
+          </p>
+          <button
+            onClick={() => navigate('/products')}
+            className="bg-[#4eba86] hover:bg-[#3da670] text-white font-['Barlow:SemiBold',sans-serif] text-[18px] px-8 py-3 rounded-[8px] transition-all duration-300"
+          >
+            Back to Store
+          </button>
+        </div>
       </div>
     );
   }
@@ -99,7 +108,7 @@ export function CheckoutPage({ productId, onBack }: CheckoutPageProps) {
       {/* Back Button */}
       <div className="max-w-[1375px] mx-auto px-6 md:px-8 pt-8">
         <button
-          onClick={onBack}
+          onClick={() => navigate(`/products/${productId}`)}
           className="flex items-center gap-2 text-[#0c1733] hover:text-[#4eba86] transition-colors duration-300 group"
         >
           <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" />

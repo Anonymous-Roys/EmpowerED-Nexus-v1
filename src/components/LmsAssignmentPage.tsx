@@ -1,13 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LmsSidebar } from './LmsSidebar';
 import { Navigation } from './Navigation';
 import imgUserAvatar from "figma:asset/20e17931f4ae89942da40c3519c4c5acbbcd7753.png";
 
-interface LmsAssignmentPageProps {
-  onNavigate: (page: string) => void;
-}
-
-export function LmsAssignmentPage({ onNavigate }: LmsAssignmentPageProps) {
+export function LmsAssignmentPage() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -86,14 +84,14 @@ export function LmsAssignmentPage({ onNavigate }: LmsAssignmentPageProps) {
   return (
     <div className="bg-white min-h-screen w-full pb-16 md:pb-20">
       {/* Navigation */}
-      <Navigation currentPage="lms-assignment" onNavigate={onNavigate} />
+      <Navigation />
 
       {/* Main Content Container */}
       <div className="pt-8 md:pt-12 px-4 md:px-6">
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] xl:grid-cols-[400px_1fr] gap-6 lg:gap-8">
             {/* Left Sidebar */}
-            <LmsSidebar activePage="assignment" onNavigate={onNavigate} />
+            <LmsSidebar activePage="assignment" />
 
             {/* Right Content Area */}
             <div className="space-y-6">

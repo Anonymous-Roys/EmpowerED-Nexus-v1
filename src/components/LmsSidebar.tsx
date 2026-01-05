@@ -1,24 +1,26 @@
+import { useNavigate, useLocation } from 'react-router-dom';
 import imgWhatsAppImage from "figma:asset/21ec550d7fea5dd192a81945d837f7f161ff4ae5.png";
 import imgUserAvatar from "figma:asset/385aea917df772ff6cd9a2c50e64d3edac8a2fee.png";
 
 interface LmsSidebarProps {
   activePage: 'dashboard' | 'my-courses' | 'assignment' | 'community';
-  onNavigate: (page: string) => void;
 }
 
-export function LmsSidebar({ activePage, onNavigate }: LmsSidebarProps) {
+export function LmsSidebar({ activePage }: LmsSidebarProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const menuItems = [
-    { id: 'lms-dashboard', label: 'Dashboard', page: 'dashboard' },
-    { id: 'lms-my-courses', label: 'My Courses', page: 'my-courses' },
-    { id: 'lms-assignment', label: 'Assignment', page: 'assignment' },
-    { id: 'lms-community', label: 'Community', page: 'community' },
+    { id: '/lms-dashboard', label: 'Dashboard', page: 'dashboard' },
+    { id: '/lms-my-courses', label: 'My Courses', page: 'my-courses' },
+    { id: '/lms-assignment', label: 'Assignment', page: 'assignment' },
+    { id: '/lms-community', label: 'Community', page: 'community' },
   ];
 
   return (
     <div className="bg-white rounded-[10px] border border-black shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] p-6 h-fit lg:sticky lg:top-8">
       {/* Dashboard/My Courses Button - Changes based on active page */}
       <button
-        onClick={() => onNavigate(activePage === 'dashboard' ? 'lms-dashboard' : 'lms-my-courses')}
+        onClick={() => navigate(activePage === 'dashboard' ? '/lms-dashboard' : '/lms-my-courses')}
         className={`w-full rounded-[8px] px-6 py-4 mb-8 font-['Montserrat:Bold',sans-serif] text-[18px] transition-all duration-300 hover:scale-[1.02] ${
           activePage === 'dashboard'
             ? 'bg-[#4eba86] text-black hover:bg-[#45a878]'
@@ -32,7 +34,7 @@ export function LmsSidebar({ activePage, onNavigate }: LmsSidebarProps) {
       <div className="space-y-6">
         {/* My Courses */}
         <button
-          onClick={() => onNavigate('lms-my-courses')}
+          onClick={() => navigate('/lms-my-courses')}
           className={`w-full flex items-center gap-4 text-left font-['Montserrat:Bold',sans-serif] text-[18px] transition-colors ${
             activePage === 'my-courses' ? 'text-[#4eba86]' : 'text-black hover:text-[#4eba86]'
           }`}
@@ -48,7 +50,7 @@ export function LmsSidebar({ activePage, onNavigate }: LmsSidebarProps) {
 
         {/* Assignment */}
         <button
-          onClick={() => onNavigate('lms-assignment')}
+          onClick={() => navigate('/lms-assignment')}
           className={`w-full flex items-center gap-4 text-left font-['Montserrat:Bold',sans-serif] text-[18px] transition-colors ${
             activePage === 'assignment' ? 'text-[#4eba86]' : 'text-black hover:text-[#4eba86]'
           }`}
