@@ -1,20 +1,42 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Calendar, Clock, BookOpen, TrendingUp } from 'lucide-react';
 import imgCloseupShotBoyDoctorWearingSanitaryMasks from "figma:asset/da93045379979112d51f82f7050c64fddce75e5b.png";
 import imgSideShotCodeEditorUsingReactJs from "figma:asset/5d967bf195cf00055fd689d0f7e86b04013330ef.png";
 import { LmsSidebar } from './LmsSidebar';
 import { Navigation } from './Navigation';
 import { authService } from '../utils/auth';
+import { lmsDataService, Course } from '../utils/lmsData';
 
 export function LmsDashboardPage() {
   const navigate = useNavigate();
   const user = authService.getCurrentUser();
-  const courses = [
+  const [stats, setStats] = useState(lmsDataService.getDashboardStats());
+  const [inProgressCourses, setInProgressCourses] = useState<Course[]>([]);
+
+  useEffect(() => {
+    // Get in-progress courses for "Continue Learning" section
+    const courses = lmsDataService.getCoursesByStatus('in-progress').slice(0, 2);
+    setInProgressCourses(courses);
+    setStats(lmsDataService.getDashboardStats());
+  }, []);
+
+  const handleViewAssignment = (assignmentId: number) => {
+    navigate('/lms-assignment', { state: { assignmentId } });
+  };
+
+  const handleViewCalendar = () => {
+    alert('Calendar view coming soon!');
+  };
+
+  const courses = inProgressCourses.length > 0 ? inProgressCourses : [
     {
       id: 1,
       title: "Intro to Community Health",
       category: "Public Health",
       progress: 75,
       image: imgCloseupShotBoyDoctorWearingSanitaryMasks,
+      slug: 'intro-community-health'
     },
     {
       id: 2,
@@ -22,6 +44,7 @@ export function LmsDashboardPage() {
       category: "Programming",
       progress: 12,
       image: imgSideShotCodeEditorUsingReactJs,
+      slug: 'python-beginners-local-solutions'
     },
   ];
 
@@ -63,11 +86,14 @@ export function LmsDashboardPage() {
       {/* Navigation */}
       <Navigation />
 
+      {/* Mobile Sidebar */}
+      <LmsSidebar activePage="dashboard" isMobile={true} />
+
       {/* Main Content Container */}
-      <div className="pt-8 md:pt-12 px-4 md:px-6">
+      <div className="pt-8 md:pt-12 px-4 md:px-6 lg:pl-20">
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] xl:grid-cols-[400px_1fr] gap-6 lg:gap-8">
-            {/* Left Sidebar */}
+            {/* Desktop Sidebar */}
             <LmsSidebar activePage="dashboard" />
 
             {/* Right Content Area */}
@@ -80,27 +106,31 @@ export function LmsDashboardPage() {
                       Welcome Back, {user?.email.split('@')[0]}!
                     </h1>
                     <p className="font-['Montserrat:Medium',sans-serif] text-[16px] md:text-[18px] text-[#b3b3b3]">
-                      You have to assignments due this week
+                      You have 3 assignments due this week
                     </p>
                   </div>
                   <button 
                     onClick={() => navigate('/products')}
-                    className="bg-[#0c1733] text-white font-['Montserrat:Medium',sans-serif] text-[18px] px-8 py-3 rounded-[10px] hover:bg-[#1a2744] transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
+                    className="bg-[#0c1733] text-white font-['Montserrat:Medium',sans-serif] text-[18px] px-8 py-3 rounded-[10px] hover:bg-[#1a2744] transition-all duration-300 hover:scale-[1.02] whitespace-nowrap flex items-center gap-2"
                   >
+                    <BookOpen className="w-5 h-5" />
                     Browse Courses
                   </button>
                 </div>
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                   {/* Courses in Progress */}
-                  <div className="bg-white rounded-[10px] border border-black p-6">
-                    <p className="font-['Montserrat:Regular',sans-serif] text-[16px] md:text-[18px] text-black mb-4">
-                      Courses in Progress
-                    </p>
+                  <div className="bg-white rounded-[10px] border border-black p-6 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="font-['Montserrat:Regular',sans-serif] text-[16px] md:text-[18px] text-black">
+                        Courses in Progress
+                      </p>
+                      <BookOpen className="w-6 h-6 text-[#4eba86]" />
+                    </div>
                     <div className="flex items-center gap-4">
                       <div className="w-[51px] h-[51px] rounded-full bg-[rgba(78,186,134,0.44)] flex items-center justify-center">
-                        <span className="font-['Barlow:Medium',sans-serif] text-[32px] text-black">4</span>
+                        <span className="font-['Barlow:Medium',sans-serif] text-[32px] text-black">{stats.coursesInProgress}</span>
                       </div>
                       <p className="font-['Montserrat:Medium',sans-serif] text-[18px] text-[#b3b3b3]">
                         Active
@@ -109,12 +139,15 @@ export function LmsDashboardPage() {
                   </div>
 
                   {/* Overall Progress */}
-                  <div className="bg-white rounded-[10px] border border-black p-6">
-                    <p className="font-['Montserrat:Regular',sans-serif] text-[16px] md:text-[18px] text-black mb-4">
-                      Overall Progress
-                    </p>
+                  <div className="bg-white rounded-[10px] border border-black p-6 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="font-['Montserrat:Regular',sans-serif] text-[16px] md:text-[18px] text-black">
+                        Overall Progress
+                      </p>
+                      <TrendingUp className="w-6 h-6 text-[#4eba86]" />
+                    </div>
                     <div className="flex items-center gap-4">
-                      <span className="font-['Barlow:Medium',sans-serif] text-[32px] text-black">88%</span>
+                      <span className="font-['Barlow:Medium',sans-serif] text-[32px] text-black">{stats.overallProgress}%</span>
                       <p className="font-['Montserrat:Medium',sans-serif] text-[18px] text-[#4eba86]">
                         +2%
                       </p>
@@ -122,14 +155,33 @@ export function LmsDashboardPage() {
                   </div>
 
                   {/* Completed Courses */}
-                  <div className="bg-white rounded-[10px] border border-black p-6">
-                    <p className="font-['Montserrat:Regular',sans-serif] text-[16px] md:text-[18px] text-black mb-4">
-                      Completed courses
-                    </p>
+                  <div className="bg-white rounded-[10px] border border-black p-6 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="font-['Montserrat:Regular',sans-serif] text-[16px] md:text-[18px] text-black">
+                        Completed Courses
+                      </p>
+                      <Calendar className="w-6 h-6 text-[#4eba86]" />
+                    </div>
                     <div className="flex items-center gap-4">
-                      <span className="font-['Barlow:Medium',sans-serif] text-[32px] text-black">12</span>
+                      <span className="font-['Barlow:Medium',sans-serif] text-[32px] text-black">{stats.completedCourses}</span>
                       <p className="font-['Montserrat:Medium',sans-serif] text-[18px] text-[#b3b3b3]">
                         Total
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Weekly Goal */}
+                  <div className="bg-white rounded-[10px] border border-black p-6 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="font-['Montserrat:Regular',sans-serif] text-[16px] md:text-[18px] text-black">
+                        Total Courses
+                      </p>
+                      <Clock className="w-6 h-6 text-[#4eba86]" />
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="font-['Barlow:Medium',sans-serif] text-[32px] text-black">{stats.totalCourses}</span>
+                      <p className="font-['Montserrat:Medium',sans-serif] text-[18px] text-[#4eba86]">
+                        Enrolled
                       </p>
                     </div>
                   </div>
@@ -145,7 +197,7 @@ export function LmsDashboardPage() {
                   {courses.map((course) => (
                     <div
                       key={course.id}
-                      className="bg-white rounded-[10px] border border-black shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden"
+                      className="bg-white rounded-[10px] border border-black shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden hover:shadow-xl transition-shadow"
                     >
                       <div className="h-[200px] overflow-hidden">
                         <img
@@ -167,12 +219,12 @@ export function LmsDashboardPage() {
                         {/* Progress Bar */}
                         <div className="bg-[#d9d9d9] h-[5px] rounded-[5px] mb-4 overflow-hidden">
                           <div
-                            className="bg-[#2e92c6] h-full rounded-[5px]"
+                            className="bg-[#2e92c6] h-full rounded-[5px] transition-all duration-300"
                             style={{ width: `${course.progress}%` }}
                           />
                         </div>
                         <button 
-                          onClick={() => navigate('/lms-course-viewer')}
+                          onClick={() => navigate(`/lms-course-viewer/${course.slug}`)}
                           className="w-full bg-[#0c1733] text-white font-['Montserrat:Bold',sans-serif] text-[14px] py-2 rounded-[10px] hover:bg-[#1a2744] transition-all duration-300"
                         >
                           Resume
@@ -238,7 +290,11 @@ export function LmsDashboardPage() {
                   </div>
                   <div className="divide-y divide-[#d9d9d9]">
                     {upcomingAssignments.map((assignment) => (
-                      <div key={assignment.id} className="p-4 flex items-center gap-4">
+                      <button
+                        key={assignment.id}
+                        onClick={() => handleViewAssignment(assignment.id)}
+                        className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 transition-colors text-left"
+                      >
                         <div className="bg-[#f8c9c9] rounded-[10px] w-[42px] h-[42px] flex flex-col items-center justify-center flex-shrink-0">
                           <p className="font-['Montserrat:Medium',sans-serif] text-[14px] text-black leading-none">
                             Oct
@@ -255,11 +311,14 @@ export function LmsDashboardPage() {
                             {assignment.category}
                           </p>
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                   <div className="p-4 text-center">
-                    <button className="font-['Montserrat:Medium',sans-serif] text-[14px] text-[#2e92c6] hover:underline">
+                    <button 
+                      onClick={handleViewCalendar}
+                      className="font-['Montserrat:Medium',sans-serif] text-[14px] text-[#2e92c6] hover:underline"
+                    >
                       View Calendar
                     </button>
                   </div>

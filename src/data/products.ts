@@ -18,10 +18,12 @@ export interface Product {
   fullDescription?: string[];
   features?: string[];
   requirements?: string[];
+  additionalImages?: string[]; // NEW: Array of additional product images
   reviews?: {
     name: string;
     text: string;
     rating: number;
+    highlight?: string; // NEW: Optional highlighted text in review
   }[];
 }
 
@@ -35,6 +37,9 @@ export const products: Product[] = [
     priceUSD: 42,
     image: imgBookCompositionWithReadingGlassesBook2,
     category: 'education',
+    additionalImages: [
+      imgGroupAfricanKidsPayingAttentionClass1
+    ],
     subtitle: 'A comprehensive, offline-first digital curriculum designed for the modern African classroom.',
     fullDescription: [
       'Unlock the potential of every student, regardless of internet connectivity. The EmpowerEd Nexus Offline Learning Suite is a revolutionary platform that brings a world-class digital curriculum to classrooms across Africa.',
@@ -52,8 +57,8 @@ export const products: Product[] = [
       'Compatible devices: Tablets, laptops, or desktop computers'
     ],
     reviews: [
-      { name: 'Kwame H.', text: 'A game-changer for our rural school. Students are more engaged than ever.', rating: 5 },
-      { name: 'Samuel B', text: 'The content is excellent and very relevant to our curriculum.', rating: 5 }
+      { name: 'Kwame H.', text: 'A game-changer for our rural school. Students are more engaged than ever.', rating: 5, highlight: 'A game-changer for our rural school.' },
+      { name: 'Samuel B', text: 'The content is excellent and very relevant to our curriculum.', rating: 5, highlight: 'The content is excellent and very relevant to our curriculum.' }
     ]
   },
   {
@@ -64,6 +69,11 @@ export const products: Product[] = [
     priceXAF: 15000,
     priceUSD: 25,
     image: imgPortraitNurseScrubsClinic1,
+    additionalImages: [
+      imgAfricanAmericanPeopleDoingConsultationWithDiseaseDiagnosisLaptopSittingWaitingAreaLobbyNurseFemalePatientTalkingAboutTreatmentRecoveryHealthcareSupportClinic1,
+      imgGroupAfricanKidsPayingAttentionClass1,
+
+    ],
     category: 'health',
     subtitle: 'Essential templates and tools for community health workers to streamline patient care.',
     fullDescription: [
@@ -93,6 +103,10 @@ export const products: Product[] = [
     priceXAF: 20000,
     priceUSD: 33,
     image: imgRectangle251,
+    additionalImages: [
+      imgBookCompositionWithReadingGlassesBook2,
+      imgGroupAfricanKidsPayingAttentionClass1
+    ],
     category: 'education',
     subtitle: 'A comprehensive self-paced course teaching essential digital skills for the 21st century.',
     fullDescription: [
@@ -111,7 +125,7 @@ export const products: Product[] = [
       'Internet connection for initial download'
     ],
     reviews: [
-      { name: 'Grace N.', text: 'Started with zero computer skills, now I\'m confident using all major software.', rating: 5 }
+      { name: 'Grace N.', text: 'Started with zero computer skills, now I\'m confident using all major software.', rating: 5, highlight: 'Started with zero computer skills, now I\'m confident using all major software.' }
     ]
   },
   {
@@ -122,6 +136,10 @@ export const products: Product[] = [
     priceXAF: 30000,
     priceUSD: 50,
     image: imgCloseupShotBoyGettingCheckup1,
+    additionalImages: [
+      imgAfricanAmericanPeopleDoingConsultationWithDiseaseDiagnosisLaptopSittingWaitingAreaLobbyNurseFemalePatientTalkingAboutTreatmentRecoveryHealthcareSupportClinic1,
+      imgGroupAfricanKidsPayingAttentionClass1
+    ],
     category: 'health',
     subtitle: 'Complete digital management system for rural health clinics.',
     fullDescription: [

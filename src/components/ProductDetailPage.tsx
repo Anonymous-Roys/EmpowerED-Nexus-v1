@@ -7,22 +7,22 @@ function Breadcrumbs({ productTitle, category }: { productTitle: string; categor
   const navigate = useNavigate();
   
   return (
-    <nav className="flex items-center gap-2 mb-6 text-[14px]">
+    <nav className="flex items-center gap-2 mb-8 text-[14px]">
       <button
         onClick={() => navigate('/')}
-        className="text-[#666] hover:text-[#4eba86] transition-colors"
+        className="text-[#999] hover:text-[#4eba86] transition-colors"
       >
         Store
       </button>
-      <span className="text-[#666]">/</span>
+      <span className="text-[#999]">/</span>
       <button
         onClick={() => navigate('/products')}
-        className="text-[#666] hover:text-[#4eba86] transition-colors"
+        className="text-[#999] hover:text-[#4eba86] transition-colors"
       >
-        {category === 'education' ? 'Education' : category === 'health' ? 'Health' : 'Digital'}
+        {category === 'education' ? 'Digital' : category === 'health' ? 'Health' : 'Digital'}
       </button>
-      <span className="text-[#666]">/</span>
-      <span className="text-[#0c1733] font-medium">{productTitle}</span>
+      <span className="text-[#999]">/</span>
+      <span className="text-[#1a1a1a] font-medium">{productTitle}</span>
     </nav>
   );
 }
@@ -31,6 +31,7 @@ export function ProductDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'description' | 'features' | 'requirements'>('description');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   console.log('Product slug from URL:', slug);
   
@@ -39,6 +40,12 @@ export function ProductDetailPage() {
   
   // Debug: Log the product
   console.log('Found product:', product);
+
+  // Create image gallery (main image + additional images if available)
+  const images = product ? [
+    product.image,
+    ...(product.additionalImages || [])
+  ] : [];
 
   if (!product) {
     return (
@@ -68,101 +75,104 @@ export function ProductDetailPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      <div className="max-w-[1375px] mx-auto px-6 py-8">
+    <div className="bg-[#f8f9fa] min-h-screen">
+      <div className="max-w-[1200px] mx-auto px-6 py-8">
         <Breadcrumbs productTitle={product.title} category={product.category} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* Left Column - Image Gallery */}
           <div>
-            <div className="bg-gray-100 rounded-lg h-[400px] overflow-hidden border">
+            <div className="bg-white rounded-lg overflow-hidden border border-gray-200 mb-4">
               <img
-                src={product.image}
+                src={images[selectedImageIndex]}
                 alt={product.title}
-                className="w-full h-full object-cover"
+                className="w-full h-[450px] object-cover"
                 onError={(e) => {
-                  e.currentTarget.src = 'https://via.placeholder.com/400x400/cccccc/969696?text=No+Image';
+                  e.currentTarget.src = 'https://via.placeholder.com/600x450/e8e8e8/999999?text=No+Image';
                 }}
               />
             </div>
+            
+            {/* Thumbnail Gallery */}
+            {images.length > 1 && (
+              <div className="flex gap-3">
+                {images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedImageIndex(idx)}
+                    className={`flex-1 rounded-lg overflow-hidden border-2 transition-all ${
+                      selectedImageIndex === idx 
+                        ? 'border-[#4eba86] shadow-md' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`${product.title} view ${idx + 1}`}
+                      className="w-full h-[100px] object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://via.placeholder.com/150x100/e8e8e8/999999?text=Image';
+                      }}
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
+          {/* Right Column - Product Info */}
           <div className="flex flex-col">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-[32px] font-bold text-[#1a1a1a] mb-4 leading-tight">
               {product.title}
             </h1>
             
             {product.subtitle && (
-              <p className="text-xl text-gray-700 mb-6">
+              <p className="text-[17px] text-[#666] mb-6 leading-relaxed">
                 {product.subtitle}
               </p>
             )}
             
-            <p className="text-gray-600 mb-6 line-clamp-3">
-              {product.description}
-            </p>
-            
-            <div className="mt-auto">
-              <div className="flex items-center gap-4 mb-8">
-                <p className="text-3xl font-bold text-green-600">
-                  {product.priceXAF ? product.priceXAF.toLocaleString() : '0'} XAF
+            <div className="mb-8">
+              <p className="text-[40px] font-bold text-[#1a1a1a] mb-1">
+                {product.priceXAF ? product.priceXAF.toLocaleString() : '0'} XAF
+              </p>
+              {product.priceUSD && (
+                <p className="text-[16px] text-[#999]">
+                  (${product.priceUSD.toLocaleString()})
                 </p>
-                {product.priceUSD && (
-                  <p className="text-lg text-gray-500">
-                    (${product.priceUSD.toLocaleString()})
-                  </p>
-                )}
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={handleAddToCart}
-                  className="bg-green-600 hover:bg-green-700 text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  Add to Cart
-                </button>
-                
-                <button
-                  onClick={() => navigate('/checkout')}
-                  className="bg-blue-600 hover:bg-blue-700 text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 border border-blue-600"
-                >
-                  Buy Now
-                </button>
-              </div>
-              
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600 flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Instant access after purchase
-                </p>
-                <p className="text-sm text-gray-600 flex items-center gap-2 mt-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  30-day money-back guarantee
-                </p>
-              </div>
+              )}
             </div>
+            
+            <button
+              onClick={handleAddToCart}
+              className="w-fit bg-[#4eba86] hover:bg-[#3da670] text-black px-8 py-4 rounded-lg font-semibold text-[16px] transition-all duration-200 mb-4"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
 
-        {/* Tab Content - Simplified for visibility */}
-        <div className="mb-8">
-          <div className="flex gap-8 mb-6 border-b">
+        {/* Tabs Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-8">
+          <div className="flex gap-8 mb-8 border-b border-gray-200">
             <button
               onClick={() => setActiveTab('description')}
-              className={`pb-3 px-1 font-medium ${activeTab === 'description' ? 'border-b-2 border-green-600 text-green-600' : 'text-gray-600 hover:text-gray-900'}`}
+              className={`pb-4 px-2 font-medium text-[15px] transition-colors ${
+                activeTab === 'description' 
+                  ? 'border-b-2 border-[#4eba86] text-[#4eba86]' 
+                  : 'text-[#666] hover:text-[#1a1a1a]'
+              }`}
             >
               Description
             </button>
             {product.features && product.features.length > 0 && (
               <button
                 onClick={() => setActiveTab('features')}
-                className={`pb-3 px-1 font-medium ${activeTab === 'features' ? 'border-b-2 border-green-600 text-green-600' : 'text-gray-600 hover:text-gray-900'}`}
+                className={`pb-4 px-2 font-medium text-[15px] transition-colors ${
+                  activeTab === 'features' 
+                    ? 'border-b-2 border-[#4eba86] text-[#4eba86]' 
+                    : 'text-[#666] hover:text-[#1a1a1a]'
+                }`}
               >
                 Features
               </button>
@@ -170,24 +180,28 @@ export function ProductDetailPage() {
             {product.requirements && product.requirements.length > 0 && (
               <button
                 onClick={() => setActiveTab('requirements')}
-                className={`pb-3 px-1 font-medium ${activeTab === 'requirements' ? 'border-b-2 border-green-600 text-green-600' : 'text-gray-600 hover:text-gray-900'}`}
+                className={`pb-4 px-2 font-medium text-[15px] transition-colors ${
+                  activeTab === 'requirements' 
+                    ? 'border-b-2 border-[#4eba86] text-[#4eba86]' 
+                    : 'text-[#666] hover:text-[#1a1a1a]'
+                }`}
               >
                 Requirements
               </button>
             )}
           </div>
 
-          <div className="py-6">
+          <div className="py-4">
             {activeTab === 'description' && (
               <div className="space-y-4">
                 {product.fullDescription ? (
                   product.fullDescription.map((paragraph, idx) => (
-                    <p key={idx} className="text-gray-700 leading-relaxed">
+                    <p key={idx} className="text-[#555] leading-relaxed text-[15px]">
                       {paragraph}
                     </p>
                   ))
                 ) : (
-                  <p className="text-gray-700 leading-relaxed">{product.description}</p>
+                  <p className="text-[#555] leading-relaxed text-[15px]">{product.description}</p>
                 )}
               </div>
             )}
@@ -195,9 +209,9 @@ export function ProductDetailPage() {
             {activeTab === 'features' && product.features && (
               <ul className="space-y-3">
                 {product.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start p-3 hover:bg-gray-50 rounded">
-                    <span className="text-green-500 mr-3 mt-1 flex-shrink-0">✓</span>
-                    <span className="text-gray-700">{feature}</span>
+                  <li key={idx} className="flex items-start">
+                    <span className="text-[#4eba86] mr-3 mt-1 flex-shrink-0 font-bold">✓</span>
+                    <span className="text-[#555] text-[15px]">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -206,9 +220,9 @@ export function ProductDetailPage() {
             {activeTab === 'requirements' && product.requirements && (
               <ul className="space-y-3">
                 {product.requirements.map((requirement, idx) => (
-                  <li key={idx} className="flex items-start p-3 hover:bg-gray-50 rounded">
-                    <span className="text-gray-400 mr-3 mt-1 flex-shrink-0">•</span>
-                    <span className="text-gray-700">{requirement}</span>
+                  <li key={idx} className="flex items-start">
+                    <span className="text-[#999] mr-3 mt-1 flex-shrink-0">•</span>
+                    <span className="text-[#555] text-[15px]">{requirement}</span>
                   </li>
                 ))}
               </ul>
@@ -216,30 +230,27 @@ export function ProductDetailPage() {
           </div>
         </div>
 
+        {/* Customer Reviews */}
         {product.reviews && product.reviews.length > 0 && (
-          <div className="mt-12 pt-8 border-t">
-            <h2 className="text-2xl font-bold text-center mb-8">Customer Reviews</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-16">
+            <h2 className="text-[28px] font-bold text-[#1a1a1a] mb-8">Customer Reviews</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {product.reviews.map((review, idx) => (
-                <div key={idx} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                      <span className="font-semibold text-green-600">
-                        {review.name.charAt(0).toUpperCase()}
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900">{review.name}</h3>
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className={`text-lg ${i < review.rating ? 'text-yellow-500' : 'text-gray-300'}`}>
-                            ★
-                          </span>
-                        ))}
-                      </div>
+                <div key={idx} className="bg-white border border-gray-200 rounded-lg p-6">
+                  <div className="mb-4">
+                    <h3 className="font-bold text-[#1a1a1a] text-[15px] mb-1">{review.name}</h3>
+                    <div className="flex gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className={`text-lg ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}>
+                          ★
+                        </span>
+                      ))}
                     </div>
                   </div>
-                  <p className="text-gray-700">{review.text}</p>
+                  <p className="text-[#555] text-[14px] leading-relaxed">{review.text}</p>
+                  {review.highlight && (
+                    <p className="mt-3 text-[#1a1a1a] font-semibold text-[14px]">{review.highlight}</p>
+                  )}
                 </div>
               ))}
             </div>

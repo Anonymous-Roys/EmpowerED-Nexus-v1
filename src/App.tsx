@@ -52,6 +52,7 @@ export default function App() {
         <Route path="lms-my-courses" element={<ProtectedRoute><LmsMyCoursesPage /></ProtectedRoute>} />
         <Route path="lms-assignment" element={<ProtectedRoute><LmsAssignmentPage /></ProtectedRoute>} />
         <Route path="lms-course-viewer" element={<ProtectedRoute><LmsCourseViewerPage /></ProtectedRoute>} />
+        <Route path="lms-course-viewer/:slug" element={<ProtectedRoute><LmsCourseViewerPage /></ProtectedRoute>} />
       </Routes>
     </Router>
   );
