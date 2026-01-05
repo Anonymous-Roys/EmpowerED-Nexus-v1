@@ -2,13 +2,19 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import imgWhatsAppImage20251022At014430RemovebgPreview1 from "figma:asset/21ec550d7fea5dd192a81945d837f7f161ff4ae5.png";
 import { DropdownMenu } from './DropdownMenu';
+import { authService, User } from '../utils/auth';
 
 export function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
   const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setUser(authService.getCurrentUser());
+  }, [location]);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -78,13 +84,43 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Request Demo Button - Desktop */}
-          <button 
-            onClick={() => navigate('/contact?type=demo')}
-            className="hidden lg:block bg-[#4eba86] px-8 py-3 rounded-[8px] text-black font-['Barlow:SemiBold',sans-serif] text-[20px] transition-all duration-300 hover:bg-[#45a878] hover:scale-105 hover:shadow-lg active:scale-95 flex-shrink-0"
-          >
-            Request a Demo
-          </button>
+          {/* Auth Button - Desktop */}
+          {user ? (
+            <div className="hidden lg:flex items-center gap-4">
+              {/* <span className="text-white text-sm">Hi, {user.name}</span> */}
+              {/* <button 
+                onClick={() => {
+                  authService.signOut();
+                  setUser(null);
+                  navigate('/');
+                }}
+                className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-lg text-white font-semibold transition-colors"
+              >
+                Sign Out
+              </button> */}
+               <button 
+                onClick={() => navigate('/contact?type=demo')}
+                className="bg-[#4eba86] px-8 py-3 rounded-[8px] text-black font-['Barlow:SemiBold',sans-serif] text-[20px] transition-all duration-300 hover:bg-[#45a878] hover:scale-105 hover:shadow-lg active:scale-95 flex-shrink-0"
+              >
+                Request a Demo
+              </button>
+            </div>
+          ) : (
+            <div className="hidden lg:flex items-center gap-4">
+              {/* <button 
+                onClick={() => navigate('/signin')}
+                className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg text-white font-semibold transition-colors"
+              >
+                Sign In
+              </button> */}
+              <button 
+                onClick={() => navigate('/contact?type=demo')}
+                className="bg-[#4eba86] px-8 py-3 rounded-[8px] text-black font-['Barlow:SemiBold',sans-serif] text-[20px] transition-all duration-300 hover:bg-[#45a878] hover:scale-105 hover:shadow-lg active:scale-95 flex-shrink-0"
+              >
+                Request a Demo
+              </button>
+            </div>
+          )}
 
           {/* Three-dot Menu Button - Desktop */}
           <div className="hidden lg:block relative ml-4 flex-shrink-0">
@@ -146,12 +182,40 @@ export function Navigation() {
                 {item.label}
               </Link>
             ))}
-            <button 
-              onClick={() => navigate('/contact?type=demo')}
-              className="w-full bg-[#4eba86] px-6 py-3 rounded-[8px] text-black font-['Barlow:SemiBold',sans-serif] text-[18px] transition-all duration-300 hover:bg-[#45a878] active:scale-95 mt-2"
-            >
-              Request a Demo
-            </button>
+            {user ? (
+              <div className="space-y-2">
+                <div className="text-white text-sm px-4">Hi, {user.name}</div>
+                <button 
+                  onClick={() => {
+                    authService.signOut();
+                    setUser(null);
+                    setMobileMenuOpen(false);
+                    navigate('/');
+                  }}
+                  className="w-full bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg text-white font-semibold transition-colors"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <button 
+                  onClick={() => {
+                    navigate('/signin');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-white font-semibold transition-colors"
+                >
+                  Sign In
+                </button>
+                <button 
+                  onClick={() => navigate('/contact?type=demo')}
+                  className="w-full bg-[#4eba86] px-6 py-3 rounded-[8px] text-black font-['Barlow:SemiBold',sans-serif] text-[18px] transition-all duration-300 hover:bg-[#45a878] active:scale-95"
+                >
+                  Request a Demo
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

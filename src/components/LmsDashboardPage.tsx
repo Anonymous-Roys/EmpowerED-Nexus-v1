@@ -3,9 +3,11 @@ import imgCloseupShotBoyDoctorWearingSanitaryMasks from "figma:asset/da930453799
 import imgSideShotCodeEditorUsingReactJs from "figma:asset/5d967bf195cf00055fd689d0f7e86b04013330ef.png";
 import { LmsSidebar } from './LmsSidebar';
 import { Navigation } from './Navigation';
+import { authService } from '../utils/auth';
 
 export function LmsDashboardPage() {
   const navigate = useNavigate();
+  const user = authService.getCurrentUser();
   const courses = [
     {
       id: 1,
@@ -75,7 +77,7 @@ export function LmsDashboardPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                   <div>
                     <h1 className="font-['Montserrat:Bold',sans-serif] text-[28px] md:text-[32px] text-black mb-2">
-                      Welcome Back, Mina
+                      Welcome Back, {user?.email.split('@')[0]}!
                     </h1>
                     <p className="font-['Montserrat:Medium',sans-serif] text-[16px] md:text-[18px] text-[#b3b3b3]">
                       You have to assignments due this week

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { HomePage } from './components/HomePage';
 import { ServicePage } from './components/ServicePage';
@@ -16,6 +16,13 @@ import { PodcastPage } from './components/PodcastPage';
 import { CommunityForumPage } from './components/CommunityForumPage';
 import { BlogPage } from './components/BlogPage';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
+import SignInPage from './components/SignInPage';
+import { authService } from './utils/auth';
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const user = authService.getCurrentUser();
+  return user ? <>{children}</> : <Navigate to="/signin" replace />;
+}
 
 export default function App() {
   return (
@@ -37,12 +44,14 @@ export default function App() {
         </Route>
         
 
+        <Route path="signin" element={<SignInPage />} />
         
         {/* Routes without layout (no header/footer) */}
-        <Route path="lms-dashboard" element={<LmsDashboardPage />} />
-        <Route path="lms-my-courses" element={<LmsMyCoursesPage />} />
-        <Route path="lms-assignment" element={<LmsAssignmentPage />} />
-        <Route path="lms-course-viewer" element={<LmsCourseViewerPage />} />
+        <Route path="lms" element={<ProtectedRoute><LmsDashboardPage /></ProtectedRoute>} />
+        <Route path="lms-dashboard" element={<ProtectedRoute><LmsDashboardPage /></ProtectedRoute>} />
+        <Route path="lms-my-courses" element={<ProtectedRoute><LmsMyCoursesPage /></ProtectedRoute>} />
+        <Route path="lms-assignment" element={<ProtectedRoute><LmsAssignmentPage /></ProtectedRoute>} />
+        <Route path="lms-course-viewer" element={<ProtectedRoute><LmsCourseViewerPage /></ProtectedRoute>} />
       </Routes>
     </Router>
   );
