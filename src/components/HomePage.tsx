@@ -5,20 +5,20 @@ import { MastercardLogo } from './MastercardLogo';
 export function HomePage() {
   const navigate = useNavigate();
   return (
-    <div className="bg-white min-h-screen w-full overflow-x-hidden">
+    <div className="bg-white min-h-screen w-full mb-16 overflow-x-none">
       {/* Hero Section */}
       <main className="relative px-4 md:px-6 lg:px-0">
         <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-0">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-8 ">
             {/* Left Content */}
             <div className="w-full lg:w-[55%] lg:pl-[100px] pt-0 lg:pt-[62px]">
               {/* Heading */}
-              <h1 className="font-['Montserrat:Medium',sans-serif] font-medium text-[28px] md:text-[32px] lg:text-[40px] text-black leading-tight lg:leading-[normal] mb-6 md:mb-8 lg:mb-12">
+              <h1 className="font-['Montserrat:Medium',sans-serif] font-medium text-[28px] md:text-[32px] lg:text-[38px] text-black leading-tight lg:leading-[normal] mt-4 lg:mt-0 mb-4 md:mb-6 lg:mb-8">
                 Bringing Education & Health to Every Community — Online or Offline
               </h1>
 
               {/* Description */}
-              <div className="font-['Montserrat:Regular',sans-serif] font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black leading-[28px] md:leading-[32px] lg:leading-[35px] tracking-[0.96px] mb-8 md:mb-10 lg:mb-12">
+              <div className="font-['Montserrat:Regular',sans-serif] font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black leading-[28px] md:leading-[32px] lg:leading-[35px] tracking-[0.96px] mb-4 md:mb-6 lg:mb-8">
                 <span className="font-['Montserrat:SemiBold',sans-serif] font-semibold">EmpowerEd Nexus</span>
                 <span>
                   {` empowers schools and individuals with innovative tech solutions — from EdTech and HealthTech to branding, design, and website development.`}
@@ -44,20 +44,20 @@ export function HomePage() {
                 </p>
                 
                 {/* MasterCard Logo */}
-                <div className="mt-4 md:mt-6">
+                <div className="mt-4 md:mt-3">
                   <MastercardLogo />
                 </div>
               </div>
 
               {/* Contact Text */}
-              <p className="font-['Montserrat:Bold',sans-serif] font-bold text-[14px] md:text-[16px] text-black leading-[35px] tracking-[0.96px] mb-6 md:mb-8">
+              <p className="font-['Montserrat:Bold',sans-serif] font-bold text-[14px] md:text-[16px] text-black leading-[35px] tracking-[0.96px] mb-4 md:mb-6">
                 Contact us for tailored solutions and expert support.
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
                 <button 
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate('/contact?type=demo')}
                   className="bg-[#4eba86] px-6 md:px-8 py-3 md:py-3.5 rounded-[8px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] font-['Montserrat:Bold',sans-serif] font-bold text-[14px] md:text-[16px] text-[rgba(255,255,255,0.85)] tracking-[0.96px] transition-all duration-300 hover:bg-[#45a878] hover:shadow-[0px_6px_8px_0px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 min-h-[44px]"
                 >
                   Request a Demo
@@ -80,10 +80,10 @@ export function HomePage() {
                     className="w-full h-full" 
                     fill="none" 
                     preserveAspectRatio="none" 
-                    viewBox="0 0 609 609"
+                    viewBox="0 0 639 689"
                   >
-                    <circle cx="304.5" cy="304.5" fill="#0C1733" r="304.5" />
-                    <circle cx="304.5" cy="304.5" fill="white" r="264.015" />
+                    <circle cx="304.5" cy="384.5" fill="#0C1733" r="304.5" />
+                    <circle cx="304.5" cy="384.5" fill="white" r="264.015" />
                   </svg>
                 </div>
                 

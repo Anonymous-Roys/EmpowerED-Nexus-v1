@@ -1,35 +1,41 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import imgWhatsAppImage20251022At014430RemovebgPreview1 from "figma:asset/21ec550d7fea5dd192a81945d837f7f161ff4ae5.png";
 import { DropdownMenu } from './DropdownMenu';
 
 export function Navigation() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const controlNavbar = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY < lastScrollY || currentScrollY < 100) {
-        // Scrolling up or near top
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down and past threshold
-        setIsVisible(false);
-        setMobileMenuOpen(false); // Close mobile menu when hiding
-        setDropdownOpen(false); // Close dropdown when hiding
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
       }
-      
-      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', controlNavbar);
-    return () => window.removeEventListener('scroll', controlNavbar);
-  }, [lastScrollY]);
+    if (mobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -41,11 +47,8 @@ export function Navigation() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
-      isVisible ? 'translate-y-0' : '-translate-y-full'
-    }`}>
-      <div className="mx-4 md:mx-6 lg:mx-[27px] mt-6 md:mt-8 lg:mt-[32px]">
-        <div className="bg-[#0c1733] rounded-[45px] px-4 md:px-6 lg:px-8 py-4 md:py-5 lg:py-6 relative shadow-lg">
+    <nav ref={navRef} className="mx-4 md:mx-6 lg:mx-[27px] mt-6 md:mt-8 lg:mt-[24px]">
+      <div className="bg-[#0c1733] rounded-[45px] px-4 md:px-6 lg:px-6 py-3 md:py-5 lg:py-1 relative">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="h-[60px] w-[60px] md:h-[70px] md:w-[70px] lg:h-[87px] lg:w-[86px] flex-shrink-0">
@@ -77,7 +80,7 @@ export function Navigation() {
 
           {/* Request Demo Button - Desktop */}
           <button 
-            onClick={() => window.open('/contact', '_blank')}
+            onClick={() => navigate('/contact?type=demo')}
             className="hidden lg:block bg-[#4eba86] px-8 py-3 rounded-[8px] text-black font-['Barlow:SemiBold',sans-serif] text-[20px] transition-all duration-300 hover:bg-[#45a878] hover:scale-105 hover:shadow-lg active:scale-95 flex-shrink-0"
           >
             Request a Demo
@@ -144,14 +147,13 @@ export function Navigation() {
               </Link>
             ))}
             <button 
-              onClick={() => window.open('/contact', '_blank')}
+              onClick={() => navigate('/contact?type=demo')}
               className="w-full bg-[#4eba86] px-6 py-3 rounded-[8px] text-black font-['Barlow:SemiBold',sans-serif] text-[18px] transition-all duration-300 hover:bg-[#45a878] active:scale-95 mt-2"
             >
               Request a Demo
             </button>
           </div>
-        )}        
-        </div>
+        )}
       </div>
     </nav>
   );

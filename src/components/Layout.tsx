@@ -7,8 +7,6 @@ export function Layout() {
   
   // Pages that should not show navigation and footer
   const hideLayoutPages = [
-    '/products/',
-    '/checkout/',
     '/lms-dashboard',
     '/lms-my-courses',
     '/lms-assignment',
@@ -30,7 +28,7 @@ export function Layout() {
   return (
     <div className="bg-white min-h-screen w-full overflow-x-hidden">
       <Navigation />
-      <main className="pt-[120px] md:pt-[140px] lg:pt-[160px]">
+      <main>
         <Outlet />
       </main>
       <Footer />

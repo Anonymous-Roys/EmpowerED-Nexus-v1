@@ -32,11 +32,13 @@ export default function App() {
           <Route path="community-forum" element={<CommunityForumPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="products/:slug" element={<ProductDetailPage />} />
+        <Route path="checkout" element={<CheckoutPage />} />
         </Route>
         
+
+        
         {/* Routes without layout (no header/footer) */}
-        <Route path="products/:id" element={<ProductDetailPage />} />
-        <Route path="checkout/:id" element={<CheckoutPage />} />
         <Route path="lms-dashboard" element={<LmsDashboardPage />} />
         <Route path="lms-my-courses" element={<LmsMyCoursesPage />} />
         <Route path="lms-assignment" element={<LmsAssignmentPage />} />

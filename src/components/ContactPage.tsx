@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 export function ContactPage() {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -8,6 +10,13 @@ export function ContactPage() {
     inquiryType: '',
     message: ''
   });
+
+  useEffect(() => {
+    const type = searchParams.get('type');
+    if (type === 'demo') {
+      setFormData(prev => ({ ...prev, inquiryType: 'demo' }));
+    }
+  }, [searchParams]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

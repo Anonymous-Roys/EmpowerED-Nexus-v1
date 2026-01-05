@@ -1,23 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import imgBookCompositionWithReadingGlassesBook2 from "figma:asset/7325ffba98817243876f345920a4064617042364.png";
-import imgPortraitNurseScrubsClinic1 from "figma:asset/3dbb7634cd18157b436775c0b14d73d0ebcba9dd.png";
-import imgCloseupShotBoyGettingCheckup1 from "figma:asset/ae8adf0a0c25fc10ee3d4efd217c5e5175620249.png";
-import imgGroupAfricanKidsPayingAttentionClass1 from "figma:asset/cb001d8e1b5bd36e7f6e50bb5448aa473785b758.png";
-import imgAfricanAmericanPeopleDoingConsultationWithDiseaseDiagnosisLaptopSittingWaitingAreaLobbyNurseFemalePatientTalkingAboutTreatmentRecoveryHealthcareSupportClinic1 from "figma:asset/e57bb778e4c78300cd2a0b2af6d0aa738745c794.png";
-import imgRectangle251 from "figma:asset/9b07e0b5444e1f6bd40decab9d59f7192aa390f1.png";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  priceXAF: number;
-  priceUSD: number;
-  image: string;
-  category: string;
-}
+import { products, Product } from '../data/products';
 
 interface ProductCardProps {
+  key: number;
   product: Product;
   currency: 'XAF' | 'USD';
 }
@@ -29,7 +15,7 @@ function ProductCard({ product, currency }: ProductCardProps) {
   return (
     <div 
       className="bg-white rounded-[20px] border border-black shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden transition-all duration-300 hover:shadow-[0px_6px_12px_0px_rgba(0,0,0,0.35)] hover:scale-105 cursor-pointer"
-      onClick={() => navigate(`/products/${product.id}`)}
+      onClick={() => navigate(`/products/${product.slug}`)}
     >
       {/* Product Image */}
       <div className="h-[220px] overflow-hidden rounded-tl-[20px] rounded-tr-[20px]">
@@ -60,63 +46,8 @@ export function ProductPage() {
   const [currency, setCurrency] = useState<'XAF' | 'USD'>('XAF');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('popularity');
-
-  const products: Product[] = [
-    {
-      id: 1,
-      title: 'Offline K-12 curriculum',
-      description: 'Complete toolkit for offline-first learning',
-      priceXAF: 25000,
-      priceUSD: 42,
-      image: imgBookCompositionWithReadingGlassesBook2,
-      category: 'education',
-    },
-    {
-      id: 2,
-      title: 'Health Worker Template Pack',
-      description: 'Essential templates for community health',
-      priceXAF: 15000,
-      priceUSD: 25,
-      image: imgPortraitNurseScrubsClinic1,
-      category: 'health',
-    },
-    {
-      id: 3,
-      title: 'Digital Literacy Course',
-      description: 'Learn essential digital skills anytime',
-      priceXAF: 20000,
-      priceUSD: 33,
-      image: imgRectangle251,
-      category: 'education',
-    },
-    {
-      id: 4,
-      title: 'Rural Clinic Management Kit',
-      description: 'Streamline your clinic operations',
-      priceXAF: 30000,
-      priceUSD: 50,
-      image: imgCloseupShotBoyGettingCheckup1,
-      category: 'health',
-    },
-    {
-      id: 5,
-      title: 'Teacher Training Module',
-      description: 'Upskill your teaching staff effectively',
-      priceXAF: 18000,
-      priceUSD: 30,
-      image: imgGroupAfricanKidsPayingAttentionClass1,
-      category: 'education',
-    },
-    {
-      id: 6,
-      title: 'Public Health Data Toolkit',
-      description: 'Tools for collecting and analyzing health data.',
-      priceXAF: 22000,
-      priceUSD: 37,
-      image: imgAfricanAmericanPeopleDoingConsultationWithDiseaseDiagnosisLaptopSittingWaitingAreaLobbyNurseFemalePatientTalkingAboutTreatmentRecoveryHealthcareSupportClinic1,
-      category: 'health',
-    },
-  ];
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const navigate = useNavigate();
 
   const categories = [
     { id: 'all', label: 'All Products' },
@@ -148,6 +79,10 @@ export function ProductPage() {
     );
   }
 
+  const handleExploreStore = () => {
+    document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="bg-white min-h-screen w-full overflow-x-hidden">
       {/* Hero Section */}
@@ -160,14 +95,17 @@ export function ProductPage() {
             Digital Toolkits, templates, and resources designed for online and offline<br className="hidden md:block" />
             access across Africa.
           </p>
-          <button className="bg-[#14ae5c] hover:bg-[#12a054] text-white font-['Barlow:Bold',sans-serif] text-[18px] px-8 py-3 rounded-[10px] transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg">
+          <button 
+            onClick={handleExploreStore}
+            className="bg-[#14ae5c] hover:bg-[#12a054] text-white font-['Barlow:Bold',sans-serif] text-[18px] px-8 py-3 rounded-[10px] transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg"
+          >
             Explore the Store
           </button>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="px-4 md:px-6 lg:px-8 pt-8 md:pt-12 lg:pt-16">
+      <div id="products-section" className="px-4 md:px-6 lg:px-8 pt-8 md:pt-12 lg:pt-16">
         <div className="max-w-[1375px] mx-auto">
           {/* Header with Currency Toggle */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
@@ -204,10 +142,23 @@ export function ProductPage() {
             </div>
           </div>
 
+          {/* Mobile Filter Toggle */}
+          <div className="lg:hidden mb-6">
+            <button
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+              className="flex items-center gap-2 bg-[#0c1733] text-white px-4 py-2 rounded-[8px] font-['Montserrat:SemiBold',sans-serif] text-[16px]"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+              </svg>
+              Filters & Sort
+            </button>
+          </div>
+
           {/* Content Grid */}
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Sidebar */}
-            <aside className="w-full lg:w-[200px] flex-shrink-0">
+            <aside className={`w-full lg:w-[200px] flex-shrink-0 ${showMobileFilters ? 'block' : 'hidden lg:block'}`}>
               {/* Categories */}
               <div className="mb-12">
                 <h3 className="font-['Montserrat:Bold',sans-serif] font-bold text-[32px] text-black mb-6">
@@ -217,7 +168,10 @@ export function ProductPage() {
                   {categories.map((category) => (
                     <button
                       key={category.id}
-                      onClick={() => setSelectedCategory(category.id)}
+                      onClick={() => {
+                        setSelectedCategory(category.id);
+                        setShowMobileFilters(false);
+                      }}
                       className={`
                         block w-full text-left font-['Montserrat:Regular',sans-serif] font-normal text-[18px] transition-colors duration-300
                         ${selectedCategory === category.id 
@@ -241,7 +195,10 @@ export function ProductPage() {
                   {sortOptions.map((option) => (
                     <button
                       key={option.id}
-                      onClick={() => setSortBy(option.id)}
+                      onClick={() => {
+                        setSortBy(option.id);
+                        setShowMobileFilters(false);
+                      }}
                       className={`
                         block w-full text-left font-['Barlow:Regular',sans-serif] text-[18px] tracking-[0.36px] transition-colors duration-300
                         ${sortBy === option.id 

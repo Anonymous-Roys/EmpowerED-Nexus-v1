@@ -18,9 +18,11 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { label: 'X.com', url: 'https://twitter.com', icon: svgPathsFooter.p38a22b70 },
-    { label: 'LinkedIn', url: 'https://linkedin.com', icon: svgPathsFooter.p2c982900, color: '#0A66C2' },
-    { label: 'Facebook', url: 'https://facebook.com', icon: svgPathsFooter.p3d66d500, color: '#0866FF' },
+    { label: 'X.com', url: 'https://x.com/empowerednexus/', icon: svgPathsFooter.p38a22b70 },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/company/empowered2024/', icon: svgPathsFooter.p2c982900, color: '#0A66C2' },
+    { label: 'Facebook', url: 'https://www.facebook.com/share/14SJ8N59ie1/', icon: svgPathsFooter.p3d66d500, color: '#0866FF' },
+    { label: 'Instagram', url: 'https://www.instagram.com/empowerednexus/', icon: svgPathsFooter.instagram, color: '#E4405F' },
+    { label: 'TikTok', url: 'https://www.tiktok.com/@empowerednexus2024?_t=ZM-90onSwNAnGq&_r=1', icon: svgPathsFooter.tiktok, color: '#000000' },
   ];
   return (
     <footer className="bg-[#0c1733] py-12 md:py-16 relative z-10">
