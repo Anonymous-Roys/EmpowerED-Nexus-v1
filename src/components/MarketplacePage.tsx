@@ -83,6 +83,10 @@ export function MarketplacePage() {
     navigate(`/marketplace/product/${product.slug}`);
   };
 
+  const handleExploreStore = () => {
+    document.getElementById('market-products-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const handleBuyNow = (product: Product) => {
     // Future: Redirect to Shopify
     alert(`Redirecting to purchase ${product.name}. This will integrate with Shopify in the future.`);
@@ -114,7 +118,7 @@ export function MarketplacePage() {
                EdTech, HealthTech, and Educational Solutions for African Schools
           </p>
           <button 
-            // onClick={handleExploreStore}
+            onClick={handleExploreStore}
             className="bg-[#14ae5c] hover:bg-[#12a054] text-white font-['Barlow:Bold',sans-serif] text-[18px] px-8 py-3 rounded-[10px] transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg"
           >
             Explore the Store
@@ -200,7 +204,7 @@ export function MarketplacePage() {
                 <option value="rating">Highest Rated</option>
               </select>
 
-              <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+              <div className="hidden md:block border border-gray-300 rounded-lg overflow-hidden">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 ${viewMode === 'grid' ? 'bg-[#4eba86] text-white' : 'bg-white text-gray-600'}`}
@@ -255,9 +259,9 @@ export function MarketplacePage() {
           </div>
 
           {/* Products Grid */}
-          <div className={`grid gap-6 mb-12 ${
+          <div id="market-products-section" className={`grid gap-6 mb-12 ${
             viewMode === 'grid' 
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
+              ? 'grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4' 
               : 'grid-cols-1'
           }`}>
             {paginatedProducts.map((product) => (
@@ -300,20 +304,20 @@ export function MarketplacePage() {
                     <span className="text-xs text-[#2e92c6] font-medium uppercase">
                       {product.categoryLabel}
                     </span>
-                    <button className="text-gray-400 hover:text-red-500 transition-colors">
+                    {/* <button className="text-gray-400 hover:text-red-500 transition-colors">
                       <Heart className="w-4 h-4" />
-                    </button>
+                    </button> */}
                   </div>
                   
-                  <h3 className="font-semibold text-lg text-black mb-2 line-clamp-2">
+                  <p className="font-semibold text-sm text-black mb-2 line-clamp-2">
                     {product.name}
-                  </h3>
+                  </p>
                   
-                  <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                  <p className="text-gray-600 text-[5px] mb-3 line-clamp-2">
                     {product.shortDescription}
                   </p>
 
-                  <div className="flex items-center gap-2 mb-3">
+                  {/* <div className="flex items-center gap-2 mb-3">
                     <div className="flex items-center">
                       {[...Array(5)].map((_, i) => (
                         <Star
@@ -329,10 +333,13 @@ export function MarketplacePage() {
                     <span className="text-sm text-gray-600">
                       {product.rating} ({product.reviewCount})
                     </span>
-                  </div>
+                  </div> */}
 
-                  <div className="flex items-center justify-between">
-                    {formatPrice(product.price, product.originalPrice)}
+                  <div className="flex flex-wrap items-center justify-between">
+                    {formatPrice(product.price, 
+                    // product.originalPrice
+
+                      )}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -345,11 +352,11 @@ export function MarketplacePage() {
                     </button>
                   </div>
 
-                  <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+                  {/* <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
                     <span>📦 {product.deliveryTime}</span>
                     <span>•</span>
                     <span>🛡️ {product.warranty}</span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}

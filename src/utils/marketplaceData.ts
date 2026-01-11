@@ -361,7 +361,470 @@ class MarketplaceDataService {
       origin: 'Local Service',
       isFeatured: true,
       isNew: false
-    }
+    },
+
+
+
+  {
+    id: 7,
+    slug: 'digital-writing-tablet',
+    name: 'Digital Writing Tablet',
+    description: 'Paperless writing tablet for students and teachers.',
+    shortDescription: 'Digital note-taking tablet',
+    price: 18000,
+    currency: 'XAF',
+    category: 'edtech-hardware',
+    categoryLabel: 'EdTech Hardware',
+    subcategory: 'Writing Tablets',
+    images: ['https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=500'],
+    inStock: true,
+    rating: 4.3,
+    reviewCount: 45,
+    tags: ['writing', 'paperless'],
+    specifications: {
+      'Screen': 'LCD',
+      'Pen': 'Pressure sensitive',
+      'Battery': 'CR2032'
+    },
+    features: ['Lightweight', 'Erase button'],
+    businessModel: 'direct',
+    deliveryTime: '2–4 days',
+    warranty: '1 year',
+    origin: 'China',
+    isFeatured: false,
+    isNew: true
+  },
+
+  {
+    id: 8,
+    slug: 'android-tablet',
+    name: 'Android Learning Tablet',
+    description: 'Affordable Android tablet for digital learning.',
+    shortDescription: 'Android tablet',
+    price: 45000,
+    currency: 'XAF',
+    category: 'edtech-hardware',
+    categoryLabel: 'EdTech Hardware',
+    subcategory: 'Android Tablets',
+    images: ['https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500'],
+    inStock: true,
+    rating: 4.4,
+    reviewCount: 88,
+    tags: ['android', 'tablet'],
+    specifications: {
+      'Screen Size': '8 inches',
+      'Storage': '32GB',
+      'RAM': '3GB'
+    },
+    features: ['Wi-Fi', 'Google Play'],
+    businessModel: 'direct',
+    deliveryTime: '3–5 days',
+    warranty: '1 year',
+    origin: 'Nigeria',
+    isFeatured: false,
+    isNew: false
+  },
+
+  {
+    id: 10,
+    slug: 'mini-laptop',
+    name: 'Mini Laptop',
+    description: 'Compact laptop for students.',
+    shortDescription: 'Mini student laptop',
+    price: 120000,
+    currency: 'XAF',
+    category: 'edtech-hardware',
+    categoryLabel: 'EdTech Hardware',
+    subcategory: 'Mini Laptops',
+    images: ['https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500'],
+    inStock: true,
+    rating: 4.5,
+    reviewCount: 62,
+    tags: ['laptop', 'portable'],
+    specifications: {
+      'Screen Size': '11.6 inches',
+      'RAM': '4GB',
+      'Storage': '128GB SSD'
+    },
+    features: ['Lightweight', 'HD display'],
+    businessModel: 'direct',
+    deliveryTime: '5–7 days',
+    warranty: '2 years',
+    origin: 'Ghana',
+    isFeatured: false,
+    isNew: false
+  },
+
+  {
+    id: 31,
+    slug: 'lms-subscription',
+    name: 'LMS Subscription',
+    description: 'Annual learning management system access for schools.',
+    shortDescription: 'School LMS access',
+    price: 150000,
+    currency: 'XAF',
+    category: 'edtech-software',
+    categoryLabel: 'EdTech Software & Services',
+    images: ['https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500'],
+    inStock: true,
+    rating: 4.6,
+    reviewCount: 34,
+    tags: ['lms', 'software'],
+    specifications: {},
+    features: ['Student tracking', 'Assignments', 'Analytics'],
+    businessModel: 'commission',
+    deliveryTime: 'Instant access',
+    warranty: 'N/A',
+    origin: 'Global',
+    isFeatured: true,
+    isNew: false
+  },
+
+  /* =========================
+     HEALTH TECH (EXAMPLE)
+     ========================= */
+
+  {
+    id: 36,
+    slug: 'blood-pressure-monitor',
+    name: 'Digital Blood Pressure Monitor',
+    description: 'Automatic BP monitor for clinics.',
+    shortDescription: 'BP monitor',
+    price: 25000,
+    currency: 'XAF',
+    category: 'healthtech-hardware',
+    categoryLabel: 'HealthTech Hardware',
+    images: ['https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500'],
+    inStock: true,
+    rating: 4.5,
+    reviewCount: 76,
+    tags: ['health', 'monitor'],
+    specifications: {
+      'Display': 'LCD',
+      'Power': 'Battery'
+    },
+    features: ['Automatic reading'],
+    businessModel: 'direct',
+    deliveryTime: '2–4 days',
+    warranty: '1 year',
+    origin: 'Germany',
+    isFeatured: false,
+    isNew: false
+  },
+
+  /* =========================
+     POWER & CONNECTIVITY (EXAMPLE)
+     ========================= */
+
+  {
+    id: 59,
+    slug: 'solar-kit',
+    name: 'Solar Power Kit',
+    description: 'Solar energy kit for schools.',
+    shortDescription: 'School solar kit',
+    price: 350000,
+    currency: 'XAF',
+    category: 'power-connectivity',
+    categoryLabel: 'Power & Connectivity',
+    images: ['https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500'],
+    inStock: true,
+    rating: 4.7,
+    reviewCount: 41,
+    tags: ['solar', 'power'],
+    specifications: {
+      'Capacity': '1kW',
+      'Battery': 'Lithium'
+    },
+    features: ['Off-grid power'],
+    businessModel: 'direct',
+    deliveryTime: '7–10 days',
+    warranty: '3 years',
+    origin: 'Cameroon',
+    isFeatured: true,
+    isNew: false
+  },
+
+  /* =========================
+     SERVICES (EXAMPLE)
+     ========================= */
+
+  {
+    id: 91,
+    slug: 'delivery-service-cm',
+    name: 'Delivery Service (Cameroon)',
+    description: 'Nationwide delivery service.',
+    shortDescription: 'Product delivery',
+    price: 15000,
+    currency: 'XAF',
+    category: 'services',
+    categoryLabel: 'Services',
+    images: ['https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=500'],
+    inStock: true,
+    rating: 4.8,
+    reviewCount: 210,
+    tags: ['delivery', 'logistics'],
+    specifications: {},
+    features: ['Nationwide coverage'],
+    businessModel: 'direct',
+    deliveryTime: '1–3 days',
+    warranty: 'N/A',
+    origin: 'Cameroon',
+    isFeatured: true,
+    isNew: false
+  },
+
+
+  {
+    id: 73,
+    slug: 'tablet-cover',
+    name: 'Tablet Cover',
+    description: 'Shock-resistant protective cover for tablets.',
+    shortDescription: 'Tablet protective cover',
+    price: 8000,
+    currency: 'XAF',
+    category: 'accessories',
+    categoryLabel: 'Accessories',
+    subcategory: 'Tablet Covers',
+    images: ['https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?w=500'],
+    inStock: true,
+    stockCount: 150,
+    rating: 4.4,
+    reviewCount: 41,
+    tags: ['tablet', 'protection'],
+    specifications: {
+      'Material': 'Silicone',
+      'Compatibility': '10–11 inch tablets'
+    },
+    features: ['Shock absorption', 'Easy grip'],
+    businessModel: 'direct',
+    deliveryTime: '1–3 business days',
+    warranty: '6 months',
+    brand: 'TabShield',
+    origin: 'China',
+    isFeatured: false,
+    isNew: true
+  },
+
+ 
+
+  {
+    id: 76,
+    slug: 'projector-screen',
+    name: 'Projector Screen',
+    description: 'Wall-mountable projector screen for classrooms.',
+    shortDescription: 'Projection screen',
+    price: 40000,
+    currency: 'XAF',
+    category: 'accessories',
+    categoryLabel: 'Accessories',
+    subcategory: 'Projector Screens',
+    images: ['https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=500'],
+    inStock: true,
+    stockCount: 25,
+    rating: 4.5,
+    reviewCount: 22,
+    tags: ['projector', 'screen'],
+    specifications: {
+      'Size': '100 inches',
+      'Mount': 'Wall'
+    },
+    features: ['Matte surface', 'Easy installation'],
+    businessModel: 'direct',
+    deliveryTime: '4–6 business days',
+    warranty: '1 year',
+    origin: 'China',
+    isFeatured: true,
+    isNew: false
+  },
+
+  {
+    id: 77,
+    slug: 'usb-hub',
+    name: 'USB Hub',
+    description: 'Multi-port USB hub for laptops and PCs.',
+    shortDescription: 'USB expansion hub',
+    price: 9000,
+    currency: 'XAF',
+    category: 'accessories',
+    categoryLabel: 'Accessories',
+    subcategory: 'USB Hubs',
+    images: ['https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500'],
+    inStock: true,
+    stockCount: 90,
+    rating: 4.4,
+    reviewCount: 37,
+    tags: ['usb', 'connectivity'],
+    specifications: {
+      'Ports': '4 USB-A',
+      'Speed': 'USB 3.0'
+    },
+    features: ['Plug & play'],
+    businessModel: 'direct',
+    deliveryTime: '2–3 business days',
+    warranty: '1 year',
+    origin: 'China',
+    isFeatured: false,
+    isNew: false
+  },
+
+  {
+    id: 78,
+    slug: 'charging-adapter',
+    name: 'Charging Adapter',
+    description: 'Fast charging adapter for phones and tablets.',
+    shortDescription: 'Power adapter',
+    price: 6000,
+    currency: 'XAF',
+    category: 'accessories',
+    categoryLabel: 'Accessories',
+    subcategory: 'Charging Adapters',
+    images: ['https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500'],
+    inStock: true,
+    stockCount: 180,
+    rating: 4.5,
+    reviewCount: 75,
+    tags: ['charger', 'power'],
+    specifications: {
+      'Output': '20W',
+      'Port': 'USB-C'
+    },
+    features: ['Fast charging'],
+    businessModel: 'direct',
+    deliveryTime: '1–2 business days',
+    warranty: '1 year',
+    origin: 'China',
+    isFeatured: false,
+    isNew: false
+  },
+
+  {
+    id: 79,
+    slug: 'charging-station',
+    name: 'Charging Station',
+    description: 'Multi-device charging station for classrooms.',
+    shortDescription: 'Device charging station',
+    price: 85000,
+    currency: 'XAF',
+    category: 'accessories',
+    categoryLabel: 'Accessories',
+    subcategory: 'Charging Stations',
+    images: ['https://images.unsplash.com/photo-1592503254549-d83d24a4dfab?w=500'],
+    inStock: true,
+    stockCount: 15,
+    rating: 4.7,
+    reviewCount: 18,
+    tags: ['charging', 'school'],
+    specifications: {
+      'Slots': '20 devices',
+      'Power': 'AC'
+    },
+    features: ['Secure storage', 'Overcharge protection'],
+    businessModel: 'direct',
+    deliveryTime: '5–7 business days',
+    warranty: '2 years',
+    origin: 'China',
+    isFeatured: true,
+    isNew: true
+  },
+
+
+  {
+    id: 52,
+    slug: 'reusable-sanitary-kit',
+    name: 'Reusable Sanitary Kit',
+    description: 'Eco-friendly reusable sanitary kit for girls and women.',
+    shortDescription: 'Reusable sanitary kit',
+    price: 12000,
+    currency: 'XAF',
+    category: 'health-hygiene',
+    categoryLabel: 'Health & Hygiene Products',
+    subcategory: 'Sanitary Products',
+    images: ['https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500'],
+    inStock: true,
+    stockCount: 200,
+    rating: 4.6,
+    reviewCount: 88,
+    tags: ['reusable', 'sanitary', 'eco-friendly'],
+    specifications: {
+      'Reusable Cycles': 'Up to 2 years',
+      'Material': 'Cotton fabric',
+      'Includes': 'Pads, storage pouch'
+    },
+    features: ['Washable', 'Cost-effective'],
+    businessModel: 'direct',
+    deliveryTime: '2–4 business days',
+    warranty: '6 months',
+    brand: 'EcoCare',
+    origin: 'Kenya',
+    isFeatured: false,
+    isNew: true
+  },
+
+  {
+    id: 53,
+    slug: 'school-hygiene-kit',
+    name: 'School Hygiene Kit',
+    description: 'Complete hygiene kit designed for primary and secondary schools.',
+    shortDescription: 'School hygiene kit',
+    price: 25000,
+    currency: 'XAF',
+    category: 'health-hygiene',
+    categoryLabel: 'Health & Hygiene Products',
+    subcategory: 'Hygiene Kits',
+    images: ['https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500'],
+    inStock: true,
+    stockCount: 120,
+    rating: 4.8,
+    reviewCount: 64,
+    tags: ['school', 'hygiene'],
+    specifications: {
+      'Includes': 'Soap, sanitizer, tissues',
+      'Target': 'Schools'
+    },
+    features: ['Promotes hygiene', 'Bulk-friendly'],
+    businessModel: 'direct',
+    deliveryTime: '3–5 business days',
+    warranty: 'N/A',
+    origin: 'Cameroon',
+    isFeatured: true,
+    isNew: false
+  },
+
+  {
+    id: 54,
+    slug: 'dental-hygiene-pack',
+    name: 'Dental Hygiene Pack',
+    description: 'Dental care pack for students and community health programs.',
+    shortDescription: 'Dental hygiene pack',
+    price: 8000,
+    currency: 'XAF',
+    category: 'health-hygiene',
+    categoryLabel: 'Health & Hygiene Products',
+    subcategory: 'Dental Care',
+    images: ['https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500'],
+    inStock: true,
+    stockCount: 300,
+    rating: 4.5,
+    reviewCount: 95,
+    tags: ['dental', 'hygiene'],
+    specifications: {
+      'Includes': 'Toothbrush, toothpaste',
+      'Age Group': 'All ages'
+    },
+    features: ['Promotes oral health'],
+    businessModel: 'direct',
+    deliveryTime: '1–3 business days',
+    warranty: 'N/A',
+    origin: 'Nigeria',
+    isFeatured: false,
+    isNew: false
+  },
+
+
+
+
+
+
   ];
 
   // Get all categories
