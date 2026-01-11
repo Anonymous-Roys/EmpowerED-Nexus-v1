@@ -3,7 +3,8 @@ import { Layout } from './components/Layout';
 import { HomePage } from './components/HomePage';
 import { ServicePage } from './components/ServicePage';
 import { ProductPage } from './components/ProductPage';
-import { ProductDetailPage } from './components/ProductDetailPage';
+import { MarketplacePage } from './components/MarketplacePage';
+import { MarketProductDetailPage } from './components/MarketProductDetailPage';
 import { CheckoutPage } from './components/CheckoutPage';
 import { ImpactPage } from './components/ImpactPage';
 import { AboutPage } from './components/AboutPage';
@@ -18,6 +19,7 @@ import { BlogPage } from './components/BlogPage';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import SignInPage from './components/SignInPage';
 import { authService } from './utils/auth';
+import { ProductDetailPage } from './components/ProductDetailPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const user = authService.getCurrentUser();
@@ -39,6 +41,8 @@ export default function App() {
           <Route path="community-forum" element={<CommunityForumPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="marketplace" element={<MarketplacePage />} />
+          <Route path="marketplace/product/:slug" element={<MarketProductDetailPage />} />
           <Route path="products/:slug" element={<ProductDetailPage />} />
         <Route path="checkout" element={<CheckoutPage />} />
         </Route>

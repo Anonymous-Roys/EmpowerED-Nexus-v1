@@ -25,6 +25,7 @@ export function DropdownMenu({ onClose }: DropdownMenuProps) {
   }, [onClose]);
 
   const menuItems = [
+    { label: 'Marketplace', path: '/marketplace' },
     { label: 'LMS Dashboard', path: '/lms-dashboard' },
     { label: 'Podcast', path: '/podcast' },
     { label: 'Community Forum', path: '/community-forum' },
