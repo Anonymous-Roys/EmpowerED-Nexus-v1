@@ -44,7 +44,7 @@ class MarketplaceDataService {
       name: 'EdTech Hardware',
       description: 'Educational technology devices and equipment',
       icon: '💻',
-      productCount: 35,
+      productCount: 6,
       subcategories: ['Tablets', 'Laptops', 'Projectors', 'Interactive Boards', 'Audio Equipment']
     },
     {
@@ -52,7 +52,7 @@ class MarketplaceDataService {
       name: 'EdTech Software & Services',
       description: 'Digital learning solutions and content',
       icon: '📚',
-      productCount: 5,
+      productCount: 0,
       subcategories: ['LMS', 'Course Bundles', 'Training Toolkits']
     },
     {
@@ -60,7 +60,7 @@ class MarketplaceDataService {
       name: 'HealthTech Hardware',
       description: 'Medical devices and health monitoring equipment',
       icon: '🏥',
-      productCount: 15,
+      productCount: 0,
       subcategories: ['Monitors', 'Diagnostic Tools', 'Medical Tablets']
     },
     {
@@ -68,7 +68,7 @@ class MarketplaceDataService {
       name: 'Health & Hygiene',
       description: 'Health and hygiene products for schools',
       icon: '🧼',
-      productCount: 8,
+      productCount: 0,
       subcategories: ['Sanitary Products', 'Hygiene Kits', 'Water Filters']
     },
     {
@@ -76,7 +76,7 @@ class MarketplaceDataService {
       name: 'Power & Connectivity',
       description: 'Solar power and network solutions',
       icon: '⚡',
-      productCount: 11,
+      productCount: 2,
       subcategories: ['Solar Kits', 'Network Equipment', 'Power Solutions']
     },
     {
@@ -84,7 +84,7 @@ class MarketplaceDataService {
       name: 'Accessories',
       description: 'Supporting accessories and peripherals',
       icon: '🔌',
-      productCount: 21,
+      productCount: 2,
       subcategories: ['Cases & Covers', 'Cables', 'Input Devices']
     },
     {
@@ -92,13 +92,12 @@ class MarketplaceDataService {
       name: 'Services',
       description: 'Professional services and support',
       icon: '🛠️',
-      productCount: 10,
+      productCount: 0,
       subcategories: ['Installation', 'Training', 'Consulting']
     }
   ];
 
   private products: Product[] = [
-    // EdTech Hardware
     {
       id: 1,
       slug: 'edutablet-pro',
@@ -145,138 +144,58 @@ class MarketplaceDataService {
       isNew: true,
       discount: 20
     },
+  
     {
       id: 2,
-      slug: 'student-laptop-basic',
-      name: 'Student Laptop Basic',
-      description: 'Affordable laptop designed for students with essential features for learning, research, and basic computing tasks.',
-      shortDescription: 'Budget-friendly laptop for students',
-      price: 120000,
-      currency: 'XAF',
-      category: 'edtech-hardware',
-      categoryLabel: 'EdTech Hardware',
-      subcategory: 'Laptops',
+      slug: "hp-zbook-studio-16-g11-workstation",
+      name: "HP ZBook Studio 16 G11 Mobile Workstation",
+      description: "Premium mobile workstation designed for professionals and creatives in Cameroon, featuring Intel Core Ultra 7 processor, NVIDIA RTX 1000 Ada graphics, and stunning 16-inch 4K UHD display for demanding workloads.",
+      shortDescription: "Professional mobile workstation with 4K display and RTX 1000 Ada graphics",
+      price: 1750000,
+      originalPrice: 1950000,
+      currency: "XAF",
+      category: "edtech-hardware",
+      categoryLabel: "EdTech Hardware",
+      subcategory: "Laptops",
       images: [
-        'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500',
-        'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500'
+        "/src/assets/marketplace-products/hp-zbook1.png",
+        "/src/assets/marketplace-products/hp-zbook2.png",
+        "/src/assets/marketplace-products/hp-zbook3.png"
       ],
       inStock: true,
-      stockCount: 15,
-      rating: 4.3,
-      reviewCount: 89,
-      tags: ['laptop', 'student', 'budget', 'portable'],
+      stockCount: 25,
+      rating: 4.8,
+      reviewCount: 124,
+      tags: ["workstation", "professional", "creatives", "4k", "graphics", "high-performance", "premium", "design"],
       specifications: {
-        'Screen Size': '14 inches',
-        'Processor': 'Intel Celeron N4020',
-        'Storage': '128GB SSD',
-        'RAM': '4GB',
-        'Battery': '6 hours',
-        'OS': 'Windows 11'
+        Processor: "Intel Core Ultra 7-165H (14th Gen), 16 cores, up to 5.00 GHz max boost",
+        RAM: "16GB DDR5 5600MHz (expandable to 64GB)",
+        Storage: "1TB NVMe SSD",
+        Display: "16-inch UHD (3840 x 2400) 4K",
+        Graphics: "NVIDIA RTX 1000 Ada 6GB GDDR6",
+        Ports: "Thunderbolt 4, USB Type-C, USB-A 3.0, Headphone/microphone",
+        Connectivity: "Wi-Fi 7 (802.11be), Bluetooth 5.4",
+        Security: "Fingerprint reader, Facial recognition, Webcam blocker"
       },
       features: [
-        'Lightweight and portable',
-        'Fast SSD storage',
-        'Full-size keyboard',
-        'HD webcam for online classes',
-        'Multiple USB ports',
-        'Wi-Fi 6 support'
+        "16-inch 4K UHD display for stunning visuals",
+        "NVIDIA RTX 1000 Ada graphics with ray tracing support",
+        "AI-enhanced graphics and compute workloads",
+        "Professional-grade security features",
+        "Wi-Fi 7 and Bluetooth 5.4 connectivity",
+        "Premium build quality for professionals"
       ],
-      businessModel: 'dropship',
-      deliveryTime: '7-14 business days',
-      warranty: '1 year',
-      origin: 'China',
-      isFeatured: false,
-      isNew: false
+      businessModel: "direct",
+      deliveryTime: "5-7 business days",
+      warranty: "3 years",
+      brand: "HP",
+      origin: "Premium workstation designed for professional use in Cameroon",
+      isFeatured: true,
+      isNew: true,
+      discount: 10
     },
     {
       id: 3,
-      slug: 'smart-projector-classroom',
-      name: 'Smart Projector for Classrooms',
-      description: 'High-brightness smart projector with wireless connectivity, perfect for classroom presentations and interactive learning.',
-      shortDescription: 'Wireless smart projector for education',
-      price: 85000,
-      currency: 'XAF',
-      category: 'edtech-hardware',
-      categoryLabel: 'EdTech Hardware',
-      subcategory: 'Projectors',
-      images: [
-        'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500',
-        'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500'
-      ],
-      inStock: true,
-      stockCount: 8,
-      rating: 4.6,
-      reviewCount: 45,
-      tags: ['projector', 'wireless', 'classroom', 'presentation'],
-      specifications: {
-        'Brightness': '3500 lumens',
-        'Resolution': '1080p Full HD',
-        'Connectivity': 'Wi-Fi, HDMI, USB',
-        'Lamp Life': '15000 hours',
-        'Throw Distance': '1.2-12m',
-        'Weight': '2.8kg'
-      },
-      features: [
-        'Wireless screen mirroring',
-        'Built-in Android OS',
-        'Keystone correction',
-        'Low noise operation',
-        'Multiple input options',
-        'Portable design'
-      ],
-      businessModel: 'direct',
-      deliveryTime: '5-7 business days',
-      warranty: '2 years',
-      origin: 'China',
-      isFeatured: true,
-      isNew: false
-    },
-    // HealthTech Hardware
-    {
-      id: 4,
-      slug: 'digital-blood-pressure-monitor',
-      name: 'Digital Blood Pressure Monitor',
-      description: 'Accurate and easy-to-use digital blood pressure monitor for health monitoring in schools and clinics.',
-      shortDescription: 'Professional blood pressure monitoring device',
-      price: 25000,
-      currency: 'XAF',
-      category: 'healthtech-hardware',
-      categoryLabel: 'HealthTech Hardware',
-      subcategory: 'Monitors',
-      images: [
-        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500'
-      ],
-      inStock: true,
-      stockCount: 30,
-      rating: 4.7,
-      reviewCount: 156,
-      tags: ['health', 'monitor', 'blood pressure', 'medical'],
-      specifications: {
-        'Measurement Range': '0-300 mmHg',
-        'Accuracy': '±3 mmHg',
-        'Memory': '99 readings',
-        'Cuff Size': '22-42cm',
-        'Display': 'Large LCD',
-        'Power': '4 AA batteries'
-      },
-      features: [
-        'WHO blood pressure classification',
-        'Irregular heartbeat detection',
-        'Average calculation',
-        'Large, clear display',
-        'Memory for multiple users',
-        'Automatic inflation'
-      ],
-      businessModel: 'dropship',
-      deliveryTime: '10-15 business days',
-      warranty: '3 years',
-      origin: 'China',
-      isFeatured: false,
-      isNew: false
-    },
-    // Power & Connectivity
-    {
-      id: 5,
       slug: 'solar-power-kit-classroom',
       name: 'Solar Power Kit for Classrooms',
       description: 'Complete solar power solution for classrooms, providing reliable electricity for educational devices and lighting.',
@@ -320,511 +239,250 @@ class MarketplaceDataService {
       isNew: true,
       discount: 17
     },
-    // Services
     {
-      id: 6,
-      slug: 'teacher-digital-training',
-      name: 'Teacher Digital Training Program',
-      description: 'Comprehensive digital literacy training program for teachers, covering modern educational technology and online teaching methods.',
-      shortDescription: 'Professional development for educators',
-      price: 45000,
+      id: 4,
+      slug: 'digital-writing-tablet',
+      name: 'Digital Writing Tablet',
+      description: 'Paperless writing tablet for students and teachers.',
+      shortDescription: 'Digital note-taking tablet',
+      price: 18000,
       currency: 'XAF',
-      category: 'services',
-      categoryLabel: 'Services',
-      subcategory: 'Training',
+      category: 'edtech-hardware',
+      categoryLabel: 'EdTech Hardware',
+      subcategory: 'Writing Tablets',
+      images: ['https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=500'],
+      inStock: true,
+      rating: 4.3,
+      reviewCount: 45,
+      tags: ['writing', 'paperless'],
+      specifications: {
+        'Screen': 'LCD',
+        'Pen': 'Pressure sensitive',
+        'Battery': 'CR2032'
+      },
+      features: ['Lightweight', 'Erase button'],
+      businessModel: 'direct',
+      deliveryTime: '2–4 days',
+      warranty: '1 year',
+      origin: 'China',
+      isFeatured: false,
+      isNew: true
+    },
+    {
+      id: 5,
+      slug: "msi-thin-gf63-gaming-laptop",
+      name: "MSI Thin GF63 Gaming Laptop",
+      description: "Powerful gaming laptop featuring Intel Core i5-12650H processor and NVIDIA GeForce RTX 4050 6GB graphics, delivering smooth gameplay at 144Hz refresh rate. Perfect for gamers and content creators with Windows 11 Home pre-installed.",
+      shortDescription: "Gaming laptop with RTX 4050 graphics and 144Hz display",
+      price: 285000,
+      originalPrice: 300000,
+      currency: "XAF",
+      category: "edtech-hardware",
+      categoryLabel: "EdTech Hardware",
+      subcategory: "Gaming Laptops",
       images: [
-        'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500'
+        "/src/assets/marketplace-products/msi-thin1.png",
+        "/src/assets/marketplace-products/msi-thin2.png",
+        "/src/assets/marketplace-products/msi-thin3.png",
       ],
       inStock: true,
-      rating: 4.8,
-      reviewCount: 234,
-      tags: ['training', 'teachers', 'digital', 'education', 'professional development'],
+      stockCount: 15,
+      rating: 4.6,
+      reviewCount: 89,
+      tags: ["gaming", "laptop", "rtx", "144hz", "gaming-laptop", "msi", "windows-11"],
       specifications: {
-        'Duration': '40 hours (5 days)',
-        'Format': 'In-person + Online',
-        'Participants': 'Up to 25 teachers',
-        'Materials': 'Digital handbook included',
-        'Certificate': 'Completion certificate',
-        'Follow-up': '3 months support'
+        "Processor": "Intel Core i5-12650H (16 CPUs, ~2.3GHz base, up to 4.7GHz boost)",
+        "RAM": "16GB DDR4",
+        "Storage": "512GB NVMe SSD",
+        "Display": "15.6\" Full HD (1920 x 1080), 144Hz refresh rate",
+        "Graphics": "NVIDIA GeForce RTX 4050 6GB GDDR6",
+        "Operating System": "Windows 11 Home",
+        "Keyboard": "QWERTY RGB (4-Zone Backlight)",
+        "Battery": "100% Health"
       },
       features: [
-        'Hands-on technology training',
-        'Online teaching methodologies',
-        'Digital content creation',
-        'Student engagement techniques',
-        'Assessment tools training',
-        'Ongoing support community'
+        "144Hz high refresh rate display for smooth gaming",
+        "RGB 4-Zone Backlight keyboard",
+        "Thin and portable gaming design",
+        "NVIDIA DLSS 3 technology support",
+        "Cooler Boost 5 thermal system",
+        "MSI Center gaming optimization software",
+        "Windows 11 Home pre-installed"
       ],
+      businessModel: "direct",
+      deliveryTime: "3-5 business days",
+      warranty: "2 years",
+      brand: "MSI",
+      origin: "International warranty, available in Cameroon",
+      isFeatured: true,
+      isNew: false,
+      discount: 9.5
+    },
+    {
+      id: 6,
+      slug: 'wireless-mouse',
+      name: 'Wireless Mouse',
+      description: 'Ergonomic wireless mouse for computers.',
+      shortDescription: 'Wireless computer mouse',
+      price: 12000,
+      currency: 'XAF',
+      category: 'accessories',
+      categoryLabel: 'Accessories',
+      subcategory: 'Input Devices',
+      images: ['https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500'],
+      inStock: true,
+      stockCount: 50,
+      rating: 4.4,
+      reviewCount: 32,
+      tags: ['mouse', 'wireless', 'ergonomic'],
+      specifications: {
+        'Connection': 'Wireless 2.4GHz',
+        'Battery': 'AA x2',
+        'DPI': '1600'
+      },
+      features: ['Ergonomic design', 'Long battery life'],
       businessModel: 'direct',
-      deliveryTime: 'Schedule within 2 weeks',
-      warranty: 'N/A',
-      origin: 'Local Service',
+      deliveryTime: '1-3 business days',
+      warranty: '1 year',
+      origin: 'China',
+      isFeatured: false,
+      isNew: false
+    },
+    {
+      id: 7,
+      slug: 'solar-kit',
+      name: 'Solar Power Kit',
+      description: 'Solar energy kit for schools.',
+      shortDescription: 'School solar kit',
+      price: 350000,
+      currency: 'XAF',
+      category: 'power-connectivity',
+      categoryLabel: 'Power & Connectivity',
+      images: ['https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500'],
+      inStock: true,
+      rating: 4.7,
+      reviewCount: 41,
+      tags: ['solar', 'power'],
+      specifications: {
+        'Capacity': '1kW',
+        'Battery': 'Lithium'
+      },
+      features: ['Off-grid power'],
+      businessModel: 'direct',
+      deliveryTime: '7–10 days',
+      warranty: '3 years',
+      origin: 'Cameroon',
       isFeatured: true,
       isNew: false
     },
-
-
-
-  {
-    id: 7,
-    slug: 'digital-writing-tablet',
-    name: 'Digital Writing Tablet',
-    description: 'Paperless writing tablet for students and teachers.',
-    shortDescription: 'Digital note-taking tablet',
-    price: 18000,
-    currency: 'XAF',
-    category: 'edtech-hardware',
-    categoryLabel: 'EdTech Hardware',
-    subcategory: 'Writing Tablets',
-    images: ['https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=500'],
-    inStock: true,
-    rating: 4.3,
-    reviewCount: 45,
-    tags: ['writing', 'paperless'],
-    specifications: {
-      'Screen': 'LCD',
-      'Pen': 'Pressure sensitive',
-      'Battery': 'CR2032'
+    {
+      id: 8,
+      slug: "hp-probook-450-g9-ultra-slim",
+      name: "HP ProBook 450 G9 Ultra Slim",
+      description: "Ultra-slim professional laptop featuring 12th Gen Intel Core i7 processor, 16GB RAM, 512GB SSD storage, and fingerprint reader. Perfect for business professionals with Windows 11 Pro and premium security features.",
+      shortDescription: "Ultra-slim business laptop with 12th Gen i7 and fingerprint security",
+      price: 850000,
+      originalPrice: 950000,
+      currency: "XAF",
+      category: "edtech-hardware",
+      categoryLabel: "EdTech Hardware",
+      subcategory: "Business Laptops",
+      images: [
+       "/src/assets/marketplace-products/hp-probook1.png",
+       "/src/assets/marketplace-products/hp-probook2.png",
+       "/src/assets/marketplace-products/hp-probook3.png"
+      ],
+      inStock: true,
+      stockCount: 12,
+      rating: 4.7,
+      reviewCount: 56,
+      tags: ["business", "ultra-slim", "professional", "fingerprint", "windows-11-pro", "hp"],
+      specifications: {
+        "Processor": "Intel Core i7-1255U 12th Gen (1.7GHz base, up to 4.5GHz Turbo-boost)",
+        "RAM": "16GB DDR4 (expandable to 64GB)",
+        "Storage": "512GB M.2 NVMe SSD",
+        "Display": "15.6 Full HD (1920 x 1080)",
+        "Graphics": "Intel Iris Xe Graphics (8GB total graphics memory)",
+        "Operating System": "Windows 11 Professional 64-bit",
+        "Security": "Fingerprint Reader",
+        "Condition": "11/10"
+      },
+      features: [
+        "Ultra-slim professional design",
+        "Fingerprint reader for enhanced security",
+        "Windows 11 Professional pre-installed",
+        "Multiple connectivity ports including USB Type-C",
+        "Intel Iris Xe graphics for professional applications",
+        "Business-grade durability and reliability"
+      ],
+      businessModel: "direct",
+      deliveryTime: "3-5 business days",
+      warranty: "2 years",
+      brand: "HP",
+      origin: "Professional business laptop available in Cameroon",
+      isFeatured: true,
+      isNew: true,
+      discount: 10.5
     },
-    features: ['Lightweight', 'Erase button'],
-    businessModel: 'direct',
-    deliveryTime: '2–4 days',
-    warranty: '1 year',
-    origin: 'China',
-    isFeatured: false,
-    isNew: true
-  },
-
-  {
-    id: 8,
-    slug: 'android-tablet',
-    name: 'Android Learning Tablet',
-    description: 'Affordable Android tablet for digital learning.',
-    shortDescription: 'Android tablet',
-    price: 45000,
-    currency: 'XAF',
-    category: 'edtech-hardware',
-    categoryLabel: 'EdTech Hardware',
-    subcategory: 'Android Tablets',
-    images: ['https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500'],
-    inStock: true,
-    rating: 4.4,
-    reviewCount: 88,
-    tags: ['android', 'tablet'],
-    specifications: {
-      'Screen Size': '8 inches',
-      'Storage': '32GB',
-      'RAM': '3GB'
+    {
+      id: 9,
+      slug: 'bluetooth-speaker',
+      name: 'Bluetooth Speaker',
+      description: 'Portable Bluetooth speaker for classrooms.',
+      shortDescription: 'Portable classroom speaker',
+      price: 25000,
+      currency: 'XAF',
+      category: 'edtech-hardware',
+      categoryLabel: 'EdTech Hardware',
+      subcategory: 'Audio Equipment',
+      images: ['https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500'],
+      inStock: true,
+      stockCount: 30,
+      rating: 4.6,
+      reviewCount: 28,
+      tags: ['speaker', 'bluetooth', 'portable'],
+      specifications: {
+        'Power': '10W',
+        'Battery': '2000mAh',
+        'Range': '10m'
+      },
+      features: ['Portable design', 'Clear sound'],
+      businessModel: 'direct',
+      deliveryTime: '2-4 business days',
+      warranty: '1 year',
+      origin: 'China',
+      isFeatured: false,
+      isNew: true
     },
-    features: ['Wi-Fi', 'Google Play'],
-    businessModel: 'direct',
-    deliveryTime: '3–5 days',
-    warranty: '1 year',
-    origin: 'Nigeria',
-    isFeatured: false,
-    isNew: false
-  },
-
-  {
-    id: 10,
-    slug: 'mini-laptop',
-    name: 'Mini Laptop',
-    description: 'Compact laptop for students.',
-    shortDescription: 'Mini student laptop',
-    price: 120000,
-    currency: 'XAF',
-    category: 'edtech-hardware',
-    categoryLabel: 'EdTech Hardware',
-    subcategory: 'Mini Laptops',
-    images: ['https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500'],
-    inStock: true,
-    rating: 4.5,
-    reviewCount: 62,
-    tags: ['laptop', 'portable'],
-    specifications: {
-      'Screen Size': '11.6 inches',
-      'RAM': '4GB',
-      'Storage': '128GB SSD'
-    },
-    features: ['Lightweight', 'HD display'],
-    businessModel: 'direct',
-    deliveryTime: '5–7 days',
-    warranty: '2 years',
-    origin: 'Ghana',
-    isFeatured: false,
-    isNew: false
-  },
-
-  {
-    id: 31,
-    slug: 'lms-subscription',
-    name: 'LMS Subscription',
-    description: 'Annual learning management system access for schools.',
-    shortDescription: 'School LMS access',
-    price: 150000,
-    currency: 'XAF',
-    category: 'edtech-software',
-    categoryLabel: 'EdTech Software & Services',
-    images: ['https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500'],
-    inStock: true,
-    rating: 4.6,
-    reviewCount: 34,
-    tags: ['lms', 'software'],
-    specifications: {},
-    features: ['Student tracking', 'Assignments', 'Analytics'],
-    businessModel: 'commission',
-    deliveryTime: 'Instant access',
-    warranty: 'N/A',
-    origin: 'Global',
-    isFeatured: true,
-    isNew: false
-  },
-
-  /* =========================
-     HEALTH TECH (EXAMPLE)
-     ========================= */
-
-  {
-    id: 36,
-    slug: 'blood-pressure-monitor',
-    name: 'Digital Blood Pressure Monitor',
-    description: 'Automatic BP monitor for clinics.',
-    shortDescription: 'BP monitor',
-    price: 25000,
-    currency: 'XAF',
-    category: 'healthtech-hardware',
-    categoryLabel: 'HealthTech Hardware',
-    images: ['https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500'],
-    inStock: true,
-    rating: 4.5,
-    reviewCount: 76,
-    tags: ['health', 'monitor'],
-    specifications: {
-      'Display': 'LCD',
-      'Power': 'Battery'
-    },
-    features: ['Automatic reading'],
-    businessModel: 'direct',
-    deliveryTime: '2–4 days',
-    warranty: '1 year',
-    origin: 'Germany',
-    isFeatured: false,
-    isNew: false
-  },
-
-  /* =========================
-     POWER & CONNECTIVITY (EXAMPLE)
-     ========================= */
-
-  {
-    id: 59,
-    slug: 'solar-kit',
-    name: 'Solar Power Kit',
-    description: 'Solar energy kit for schools.',
-    shortDescription: 'School solar kit',
-    price: 350000,
-    currency: 'XAF',
-    category: 'power-connectivity',
-    categoryLabel: 'Power & Connectivity',
-    images: ['https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500'],
-    inStock: true,
-    rating: 4.7,
-    reviewCount: 41,
-    tags: ['solar', 'power'],
-    specifications: {
-      'Capacity': '1kW',
-      'Battery': 'Lithium'
-    },
-    features: ['Off-grid power'],
-    businessModel: 'direct',
-    deliveryTime: '7–10 days',
-    warranty: '3 years',
-    origin: 'Cameroon',
-    isFeatured: true,
-    isNew: false
-  },
-
-  /* =========================
-     SERVICES (EXAMPLE)
-     ========================= */
-
-  {
-    id: 91,
-    slug: 'delivery-service-cm',
-    name: 'Delivery Service (Cameroon)',
-    description: 'Nationwide delivery service.',
-    shortDescription: 'Product delivery',
-    price: 15000,
-    currency: 'XAF',
-    category: 'services',
-    categoryLabel: 'Services',
-    images: ['https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=500'],
-    inStock: true,
-    rating: 4.8,
-    reviewCount: 210,
-    tags: ['delivery', 'logistics'],
-    specifications: {},
-    features: ['Nationwide coverage'],
-    businessModel: 'direct',
-    deliveryTime: '1–3 days',
-    warranty: 'N/A',
-    origin: 'Cameroon',
-    isFeatured: true,
-    isNew: false
-  },
-
-
-  {
-    id: 73,
-    slug: 'tablet-cover',
-    name: 'Tablet Cover',
-    description: 'Shock-resistant protective cover for tablets.',
-    shortDescription: 'Tablet protective cover',
-    price: 8000,
-    currency: 'XAF',
-    category: 'accessories',
-    categoryLabel: 'Accessories',
-    subcategory: 'Tablet Covers',
-    images: ['https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?w=500'],
-    inStock: true,
-    stockCount: 150,
-    rating: 4.4,
-    reviewCount: 41,
-    tags: ['tablet', 'protection'],
-    specifications: {
-      'Material': 'Silicone',
-      'Compatibility': '10–11 inch tablets'
-    },
-    features: ['Shock absorption', 'Easy grip'],
-    businessModel: 'direct',
-    deliveryTime: '1–3 business days',
-    warranty: '6 months',
-    brand: 'TabShield',
-    origin: 'China',
-    isFeatured: false,
-    isNew: true
-  },
-
- 
-
-  {
-    id: 76,
-    slug: 'projector-screen',
-    name: 'Projector Screen',
-    description: 'Wall-mountable projector screen for classrooms.',
-    shortDescription: 'Projection screen',
-    price: 40000,
-    currency: 'XAF',
-    category: 'accessories',
-    categoryLabel: 'Accessories',
-    subcategory: 'Projector Screens',
-    images: ['https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=500'],
-    inStock: true,
-    stockCount: 25,
-    rating: 4.5,
-    reviewCount: 22,
-    tags: ['projector', 'screen'],
-    specifications: {
-      'Size': '100 inches',
-      'Mount': 'Wall'
-    },
-    features: ['Matte surface', 'Easy installation'],
-    businessModel: 'direct',
-    deliveryTime: '4–6 business days',
-    warranty: '1 year',
-    origin: 'China',
-    isFeatured: true,
-    isNew: false
-  },
-
-  {
-    id: 77,
-    slug: 'usb-hub',
-    name: 'USB Hub',
-    description: 'Multi-port USB hub for laptops and PCs.',
-    shortDescription: 'USB expansion hub',
-    price: 9000,
-    currency: 'XAF',
-    category: 'accessories',
-    categoryLabel: 'Accessories',
-    subcategory: 'USB Hubs',
-    images: ['https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500'],
-    inStock: true,
-    stockCount: 90,
-    rating: 4.4,
-    reviewCount: 37,
-    tags: ['usb', 'connectivity'],
-    specifications: {
-      'Ports': '4 USB-A',
-      'Speed': 'USB 3.0'
-    },
-    features: ['Plug & play'],
-    businessModel: 'direct',
-    deliveryTime: '2–3 business days',
-    warranty: '1 year',
-    origin: 'China',
-    isFeatured: false,
-    isNew: false
-  },
-
-  {
-    id: 78,
-    slug: 'charging-adapter',
-    name: 'Charging Adapter',
-    description: 'Fast charging adapter for phones and tablets.',
-    shortDescription: 'Power adapter',
-    price: 6000,
-    currency: 'XAF',
-    category: 'accessories',
-    categoryLabel: 'Accessories',
-    subcategory: 'Charging Adapters',
-    images: ['https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500'],
-    inStock: true,
-    stockCount: 180,
-    rating: 4.5,
-    reviewCount: 75,
-    tags: ['charger', 'power'],
-    specifications: {
-      'Output': '20W',
-      'Port': 'USB-C'
-    },
-    features: ['Fast charging'],
-    businessModel: 'direct',
-    deliveryTime: '1–2 business days',
-    warranty: '1 year',
-    origin: 'China',
-    isFeatured: false,
-    isNew: false
-  },
-
-  {
-    id: 79,
-    slug: 'charging-station',
-    name: 'Charging Station',
-    description: 'Multi-device charging station for classrooms.',
-    shortDescription: 'Device charging station',
-    price: 85000,
-    currency: 'XAF',
-    category: 'accessories',
-    categoryLabel: 'Accessories',
-    subcategory: 'Charging Stations',
-    images: ['https://images.unsplash.com/photo-1592503254549-d83d24a4dfab?w=500'],
-    inStock: true,
-    stockCount: 15,
-    rating: 4.7,
-    reviewCount: 18,
-    tags: ['charging', 'school'],
-    specifications: {
-      'Slots': '20 devices',
-      'Power': 'AC'
-    },
-    features: ['Secure storage', 'Overcharge protection'],
-    businessModel: 'direct',
-    deliveryTime: '5–7 business days',
-    warranty: '2 years',
-    origin: 'China',
-    isFeatured: true,
-    isNew: true
-  },
-
-
-  {
-    id: 52,
-    slug: 'reusable-sanitary-kit',
-    name: 'Reusable Sanitary Kit',
-    description: 'Eco-friendly reusable sanitary kit for girls and women.',
-    shortDescription: 'Reusable sanitary kit',
-    price: 12000,
-    currency: 'XAF',
-    category: 'health-hygiene',
-    categoryLabel: 'Health & Hygiene Products',
-    subcategory: 'Sanitary Products',
-    images: ['https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500'],
-    inStock: true,
-    stockCount: 200,
-    rating: 4.6,
-    reviewCount: 88,
-    tags: ['reusable', 'sanitary', 'eco-friendly'],
-    specifications: {
-      'Reusable Cycles': 'Up to 2 years',
-      'Material': 'Cotton fabric',
-      'Includes': 'Pads, storage pouch'
-    },
-    features: ['Washable', 'Cost-effective'],
-    businessModel: 'direct',
-    deliveryTime: '2–4 business days',
-    warranty: '6 months',
-    brand: 'EcoCare',
-    origin: 'Kenya',
-    isFeatured: false,
-    isNew: true
-  },
-
-  {
-    id: 53,
-    slug: 'school-hygiene-kit',
-    name: 'School Hygiene Kit',
-    description: 'Complete hygiene kit designed for primary and secondary schools.',
-    shortDescription: 'School hygiene kit',
-    price: 25000,
-    currency: 'XAF',
-    category: 'health-hygiene',
-    categoryLabel: 'Health & Hygiene Products',
-    subcategory: 'Hygiene Kits',
-    images: ['https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500'],
-    inStock: true,
-    stockCount: 120,
-    rating: 4.8,
-    reviewCount: 64,
-    tags: ['school', 'hygiene'],
-    specifications: {
-      'Includes': 'Soap, sanitizer, tissues',
-      'Target': 'Schools'
-    },
-    features: ['Promotes hygiene', 'Bulk-friendly'],
-    businessModel: 'direct',
-    deliveryTime: '3–5 business days',
-    warranty: 'N/A',
-    origin: 'Cameroon',
-    isFeatured: true,
-    isNew: false
-  },
-
-  {
-    id: 54,
-    slug: 'dental-hygiene-pack',
-    name: 'Dental Hygiene Pack',
-    description: 'Dental care pack for students and community health programs.',
-    shortDescription: 'Dental hygiene pack',
-    price: 8000,
-    currency: 'XAF',
-    category: 'health-hygiene',
-    categoryLabel: 'Health & Hygiene Products',
-    subcategory: 'Dental Care',
-    images: ['https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500'],
-    inStock: true,
-    stockCount: 300,
-    rating: 4.5,
-    reviewCount: 95,
-    tags: ['dental', 'hygiene'],
-    specifications: {
-      'Includes': 'Toothbrush, toothpaste',
-      'Age Group': 'All ages'
-    },
-    features: ['Promotes oral health'],
-    businessModel: 'direct',
-    deliveryTime: '1–3 business days',
-    warranty: 'N/A',
-    origin: 'Nigeria',
-    isFeatured: false,
-    isNew: false
-  },
-
-
-
-
-
-
+    {
+      id: 10,
+      slug: 'charging-adapter',
+      name: 'Charging Adapter',
+      description: 'Fast charging adapter for phones and tablets.',
+      shortDescription: 'Power adapter',
+      price: 6000,
+      currency: 'XAF',
+      category: 'accessories',
+      categoryLabel: 'Accessories',
+      subcategory: 'Charging Adapters',
+      images: ['https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500'],
+      inStock: true,
+      stockCount: 180,
+      rating: 4.5,
+      reviewCount: 75,
+      tags: ['charger', 'power'],
+      specifications: {
+        'Output': '20W',
+        'Port': 'USB-C'
+      },
+      features: ['Fast charging'],
+      businessModel: 'direct',
+      deliveryTime: '1–2 business days',
+      warranty: '1 year',
+      origin: 'China',
+      isFeatured: false,
+      isNew: false
+    }
   ];
 
   // Get all categories

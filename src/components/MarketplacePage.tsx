@@ -12,7 +12,7 @@ export function MarketplacePage() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'all');
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 200000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 20000000]);
   const [sortBy, setSortBy] = useState('featured');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
