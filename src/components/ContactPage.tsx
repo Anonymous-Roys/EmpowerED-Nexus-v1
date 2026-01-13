@@ -10,6 +10,11 @@ export function ContactPage() {
     inquiryType: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Replace with your Google Apps Script Web App URL
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyw60y5oFYM8qvxdGRKIke9ujZQ29EWY4tyBPDaOq2nEYXsRsAuIO20RUgh5w0_OblhEQ/exec';
 
   useEffect(() => {
     const type = searchParams.get('type');
@@ -18,18 +23,36 @@ export function ContactPage() {
     }
   }, [searchParams]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({
-      fullName: '',
-      email: '',
-      organization: '',
-      inquiryType: '',
-      message: ''
-    });
-    alert('Thank you for your message! We will get back to you soon.');
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      // With no-cors, we can't read the response, so assume success
+      setSubmitStatus('success');
+      setFormData({
+        fullName: '',
+        email: '',
+        organization: '',
+        inquiryType: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -178,10 +201,23 @@ export function ContactPage() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-[#4eba86] text-white font-['Montserrat:Medium',sans-serif] text-[18px] py-4 rounded-[8px] transition-all duration-300 hover:bg-[#45a878] hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-lg"
+                disabled={isSubmitting}
+                className="w-full bg-[#4eba86] text-white font-['Montserrat:Medium',sans-serif] text-[18px] py-4 rounded-[8px] transition-all duration-300 hover:bg-[#45a878] hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+                  Thank you for your message! We will get back to you soon.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+                  Sorry, there was an error sending your message. Please try again.
+                </div>
+              )}
             </form>
           </div>
 
