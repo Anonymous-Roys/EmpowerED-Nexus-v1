@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Star, ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw, Phone, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { marketplaceDataService, Product } from '../utils/marketplaceData';
+import { WhatsAppModal } from './WhatsAppModal';
 
 export function MarketProductDetailPage() {
   const { slug } = useParams();
@@ -12,6 +13,7 @@ export function MarketProductDetailPage() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
+  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
 
   useEffect(() => {
     if (slug) {
@@ -38,8 +40,7 @@ export function MarketProductDetailPage() {
   }
 
   const handleBuyNow = () => {
-    // Future: Redirect to Shopify
-    alert(`Redirecting to purchase ${product.name}. This will integrate with Shopify in the future.`);
+    setShowWhatsAppModal(true);
   };
 
   const handleAddToCart = () => {
@@ -449,6 +450,13 @@ export function MarketProductDetailPage() {
           )}
         </div>
       </div>
+
+      {/* WhatsApp Modal */}
+      <WhatsAppModal
+        isOpen={showWhatsAppModal}
+        onClose={() => setShowWhatsAppModal(false)}
+        product={product}
+      />
     </div>
   );
 }

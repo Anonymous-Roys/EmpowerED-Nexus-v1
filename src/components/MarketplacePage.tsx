@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Search, Filter, Grid, List, Star, ShoppingCart, Eye, Heart, ChevronDown } from 'lucide-react';
 import { marketplaceDataService, Product, Category } from '../utils/marketplaceData';
+import { WhatsAppModal } from './WhatsAppModal';
 
 export function MarketplacePage() {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ export function MarketplacePage() {
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
+  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     const allProducts = marketplaceDataService.getProducts();
@@ -88,8 +91,8 @@ export function MarketplacePage() {
   };
 
   const handleBuyNow = (product: Product) => {
-    // Future: Redirect to Shopify
-    alert(`Redirecting to purchase ${product.name}. This will integrate with Shopify in the future.`);
+    setSelectedProduct(product);
+    setShowWhatsAppModal(true);
   };
 
   const formatPrice = (price: number, originalPrice?: number) => {
@@ -407,6 +410,18 @@ export function MarketplacePage() {
           )}
         </div>
       </div>
+
+      {/* WhatsApp Modal */}
+      {selectedProduct && (
+        <WhatsAppModal
+          isOpen={showWhatsAppModal}
+          onClose={() => {
+            setShowWhatsAppModal(false);
+            setSelectedProduct(null);
+          }}
+          product={selectedProduct}
+        />
+      )}
     </div>
   );
 }

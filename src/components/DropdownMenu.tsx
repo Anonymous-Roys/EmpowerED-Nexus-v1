@@ -39,10 +39,10 @@ export function DropdownMenu({ onClose }: DropdownMenuProps) {
       className="absolute top-full right-0 mt-2 w-[176px] bg-white rounded-[4px] shadow-[0px_3px_6px_-4px_rgba(0,0,0,0.12),0px_6px_16px_0px_rgba(0,0,0,0.08),0px_9px_28px_8px_rgba(0,0,0,0.05)] overflow-hidden animate-fadeIn z-50"
     >
       {/* Dropdown Header */}
-      <div className="bg-white border-b border-[#1890ff] px-3 py-2 flex items-center justify-between">
-        {/* <p className="font-['Montserrat:Regular',sans-serif] font-normal text-[14px] text-[#d9d9d9] leading-[22px]">
+      {/* <div className="bg-white border-b border-[#1890ff] px-3 py-2 flex items-center justify-between">
+        <p className="font-['Montserrat:Regular',sans-serif] font-normal text-[14px] text-[#d9d9d9] leading-[22px]">
           More options
-        </p> */}
+        </p>
         <div className="w-3 h-2 flex items-center justify-center">
           <svg 
             className="w-full h-full rotate-[270deg]" 
@@ -55,7 +55,7 @@ export function DropdownMenu({ onClose }: DropdownMenuProps) {
             />
           </svg>
         </div>
-      </div>
+      </div> */}
 
       {/* Menu Items */}
       <div className="py-[2px]">

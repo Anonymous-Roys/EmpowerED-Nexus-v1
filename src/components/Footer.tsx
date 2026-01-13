@@ -7,7 +7,8 @@ export function Footer() {
     { label: 'About Us', path: '/about' },
     { label: 'Courses', path: '/products' },
     { label: 'Contact', path: '/contact' },
-    { label: 'Careers', path: '/about' }, // Can be updated to a careers page later
+    { label: 'Careers', path: '/about' },
+    { label: 'MarketPlace', path: '/marketplace' },
   ];
 
   const resources = [
@@ -19,9 +20,9 @@ export function Footer() {
 
   const socialLinks = [
     { label: 'X.com', url: 'https://x.com/empowerednexus/', icon: svgPathsFooter.p38a22b70 },
-    { label: 'LinkedIn', url: 'https://www.linkedin.com/company/empowered2024/', icon: svgPathsFooter.p2c982900, color: '#0A66C2' },
-    { label: 'Facebook', url: 'https://www.facebook.com/share/14SJ8N59ie1/', icon: svgPathsFooter.p3d66d500, color: '#0866FF' },
-    { label: 'Instagram', url: 'https://www.instagram.com/empowerednexus/', icon: svgPathsFooter.instagram, color: '#E4405F' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/company/empowerednexus/', icon: svgPathsFooter.p2c982900, color: '#0A66C2' },
+    { label: 'Facebook', url: 'https://www.facebook.com/empowerednexus/', icon: svgPathsFooter.p3d66d500, color: '#0866FF' },
+    { label: 'Instagram', url: 'https://www.instagram.com/empowerednexusltd/', icon: svgPathsFooter.instagram, color: '#E4405F' },
     { label: 'TikTok', url: 'https://www.tiktok.com/@empowerednexus2024?_t=ZM-90onSwNAnGq&_r=1', icon: svgPathsFooter.tiktok, color: '#000000' },
   ];
   return (
