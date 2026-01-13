@@ -37,6 +37,8 @@ export interface Category {
   subcategories?: string[];
 }
 
+import { marketplaceImages } from './marketplaceImages';
+
 class MarketplaceDataService {
   private categories: Category[] = [
     {
@@ -158,9 +160,9 @@ class MarketplaceDataService {
       categoryLabel: "EdTech Hardware",
       subcategory: "Laptops",
       images: [
-        "/src/assets/marketplace-products/hp-zbook1.png",
-        "/src/assets/marketplace-products/hp-zbook2.png",
-        "/src/assets/marketplace-products/hp-zbook3.png"
+        marketplaceImages.hpZbook1,
+        marketplaceImages.hpZbook2,
+        marketplaceImages.hpZbook3
       ],
       inStock: true,
       stockCount: 25,
@@ -281,9 +283,9 @@ class MarketplaceDataService {
       categoryLabel: "EdTech Hardware",
       subcategory: "Gaming Laptops",
       images: [
-        "/src/assets/marketplace-products/msi-thin1.png",
-        "/src/assets/marketplace-products/msi-thin2.png",
-        "/src/assets/marketplace-products/msi-thin3.png",
+        marketplaceImages.msiThin1,
+        marketplaceImages.msiThin2,
+        marketplaceImages.msiThin3,
       ],
       inStock: true,
       stockCount: 15,
@@ -388,9 +390,9 @@ class MarketplaceDataService {
       categoryLabel: "EdTech Hardware",
       subcategory: "Business Laptops",
       images: [
-       "/src/assets/marketplace-products/hp-probook1.png",
-       "/src/assets/marketplace-products/hp-probook2.png",
-       "/src/assets/marketplace-products/hp-probook3.png"
+       marketplaceImages.hpProbook1,
+       marketplaceImages.hpProbook2,
+       marketplaceImages.hpProbook3
       ],
       inStock: true,
       stockCount: 12,
