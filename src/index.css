@@ -3686,3 +3686,44 @@ html {
   justify-content: center;
   padding: 0 1rem;
 }
+
+/* Mobile LMS Sidebar */
+.mobile-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 280px;
+  background-color: white;
+  z-index: 50;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-sidebar-open {
+  transform: translateX(0);
+}
+
+.mobile-sidebar-closed {
+  transform: translateX(-100%);
+}
+
+.mobile-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mobile-menu-button {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}

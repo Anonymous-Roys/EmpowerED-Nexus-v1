@@ -7,10 +7,10 @@ export function Layout() {
   
   // Pages that should not show navigation and footer
   const hideLayoutPages = [
-    '/lms-dashboard',
-    '/lms-my-courses',
-    '/lms-assignment',
-    '/lms-course-viewer'
+    // '/lms-dashboard',
+    // '/lms-my-courses',
+    // '/lms-assignment',
+    // '/lms-course-viewer'
   ];
   
   const shouldHideLayout = hideLayoutPages.some(path => 

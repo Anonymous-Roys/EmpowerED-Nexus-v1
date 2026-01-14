@@ -20,6 +20,7 @@ import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import SignInPage from './components/SignInPage';
 import { authService } from './utils/auth';
 import { ProductDetailPage } from './components/ProductDetailPage';
+import { NotFoundPage } from './components/NotFoundPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const user = authService.getCurrentUser();
@@ -51,12 +52,15 @@ export default function App() {
         <Route path="signin" element={<SignInPage />} />
         
         {/* Routes without layout (no header/footer) */}
-        <Route path="lms" element={<ProtectedRoute><LmsDashboardPage /></ProtectedRoute>} />
+        {/* <Route path="lms" element={<ProtectedRoute><LmsDashboardPage /></ProtectedRoute>} />
         <Route path="lms-dashboard" element={<ProtectedRoute><LmsDashboardPage /></ProtectedRoute>} />
         <Route path="lms-my-courses" element={<ProtectedRoute><LmsMyCoursesPage /></ProtectedRoute>} />
         <Route path="lms-assignment" element={<ProtectedRoute><LmsAssignmentPage /></ProtectedRoute>} />
         <Route path="lms-course-viewer" element={<ProtectedRoute><LmsCourseViewerPage /></ProtectedRoute>} />
-        <Route path="lms-course-viewer/:slug" element={<ProtectedRoute><LmsCourseViewerPage /></ProtectedRoute>} />
+        <Route path="lms-course-viewer/:slug" element={<ProtectedRoute><LmsCourseViewerPage /></ProtectedRoute>} /> */}
+        
+        {/* 404 Page */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

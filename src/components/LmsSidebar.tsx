@@ -105,21 +105,27 @@ export function LmsSidebar({ activePage, isMobile = false }: LmsSidebarProps) {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden fixed top-4 left-4 z-50 bg-white p-2 rounded-lg shadow-lg border border-gray-200"
+          className="mobile-menu-button lg:hidden"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
         {/* Mobile Sidebar Overlay */}
         {isOpen && (
-          <div className="lg:hidden fixed inset-0 z-40 bg-black bg-opacity-50" onClick={() => setIsOpen(false)} />
+          <div className="mobile-sidebar-overlay lg:hidden" onClick={() => setIsOpen(false)} />
         )}
 
         {/* Mobile Sidebar */}
-        <div className={`lg:hidden fixed left-0 top-0 h-full w-80 bg-white z-50 transform transition-transform duration-300 overflow-y-auto ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+        <div className={`mobile-sidebar lg:hidden ${
+          isOpen ? 'mobile-sidebar-open' : 'mobile-sidebar-closed'
         }`}>
-          <div className="p-6 pt-16">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <div className="p-4 pt-16">
             <SidebarContent 
               activePage={activePage} 
               menuItems={menuItems} 
@@ -160,7 +166,7 @@ function SidebarContent({ activePage, menuItems, user, handleNavigation, handleS
       {/* Main Action Button */}
       <button
         onClick={() => handleNavigation(activePage === 'dashboard' ? '/lms-dashboard' : '/lms-my-courses')}
-        className={`w-full rounded-[8px] px-6 py-4 mb-8 font-['Montserrat:Bold',sans-serif] text-[18px] transition-all duration-300 hover:scale-[1.02] ${
+        className={`w-full rounded-[8px] px-4 py-3 mb-6 font-['Montserrat:Bold',sans-serif] text-[16px] transition-all duration-300 hover:scale-[1.02] ${
           activePage === 'dashboard'
             ? 'bg-[#4eba86] text-black hover:bg-[#45a878]'
             : 'bg-white border border-[#4eba86] text-[#4eba86] hover:bg-[#4eba86] hover:text-black'
@@ -170,56 +176,60 @@ function SidebarContent({ activePage, menuItems, user, handleNavigation, handleS
       </button>
 
       {/* Menu Items */}
-      <div className="space-y-6">
+      <div className="space-y-4">
         {menuItems.map((item) => (
           <button
             key={item.id}
             onClick={() => handleNavigation(item.id)}
-            className={`w-full flex items-center gap-4 text-left font-['Montserrat:Bold',sans-serif] text-[18px] transition-colors ${
+            className={`w-full flex items-center gap-3 text-left font-['Montserrat:Bold',sans-serif] text-[16px] transition-colors ${
               activePage === item.page ? 'text-[#4eba86]' : 'text-black hover:text-[#4eba86]'
             }`}
           >
-            {item.icon}
-            <span className="sm:inline">{item.label}</span>
+            <div className="w-[36px] h-[36px] flex-shrink-0 flex items-center justify-center">
+              {item.icon}
+            </div>
+            <span>{item.label}</span>
           </button>
         ))}
 
         {/* Sign Out */}
         <button 
           onClick={handleSignOut}
-          className="w-full flex items-center gap-4 text-left font-['Montserrat:Bold',sans-serif] text-[18px] text-red-600 hover:text-red-700 transition-colors mt-6"
+          className="w-full flex items-center gap-3 text-left font-['Montserrat:Bold',sans-serif] text-[16px] text-red-600 hover:text-red-700 transition-colors mt-4"
         >
-          <svg className="w-[42px] h-[42px] flex-shrink-0" fill="none" viewBox="0 0 42 42">
-            <path
-              d="M15.75 37.625H8.75C7.75544 37.625 6.80161 37.2299 6.09835 36.5267C5.39509 35.8234 5 34.8696 5 33.875V8.125C5 7.13044 5.39509 6.17661 6.09835 5.47335C6.80161 4.77009 7.75544 4.375 8.75 4.375H15.75M28 29.75L37 21L28 12.25M37 21H15.75"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className="sm:inline">Sign Out</span>
+          <div className="w-[36px] h-[36px] flex-shrink-0 flex items-center justify-center">
+            <svg className="w-[36px] h-[36px]" fill="none" viewBox="0 0 42 42">
+              <path
+                d="M15.75 37.625H8.75C7.75544 37.625 6.80161 37.2299 6.09835 36.5267C5.39509 35.8234 5 34.8696 5 33.875V8.125C5 7.13044 5.39509 6.17661 6.09835 5.47335C6.80161 4.77009 7.75544 4.375 8.75 4.375H15.75M28 29.75L37 21L28 12.25M37 21H15.75"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <span>Sign Out</span>
         </button>
       </div>
 
       {/* User Profile */}
-      <div className="mt-12 flex items-center gap-4">
-        <div className="w-[78px] h-[78px] rounded-full overflow-hidden flex-shrink-0">
+      <div className="mt-8 flex items-center gap-3">
+        <div className="w-[60px] h-[60px] rounded-full overflow-hidden flex-shrink-0">
           <img src={imgUserAvatar} alt="User" className="w-full h-full object-cover" />
         </div>
-        <div className="hidden sm:block">
-          <p className="font-['Montserrat:Bold',sans-serif] text-[18px] text-black">
+        <div className="min-w-0 flex-1">
+          <p className="font-['Montserrat:Bold',sans-serif] text-[16px] text-black truncate">
             {user?.name || 'Student'}
           </p>
-          <p className="font-['Montserrat:Bold',sans-serif] text-[14px] text-[#b3b3b3]">
+          <p className="font-['Montserrat:Bold',sans-serif] text-[12px] text-[#b3b3b3] truncate">
             {user?.email || 'student@example.com'}
           </p>
         </div>
       </div>
 
       {/* Logo at Bottom */}
-      <div className="mt-12 flex justify-center">
-        <img src={imgWhatsAppImage} alt="Logo" className="w-[138px] h-[138px] object-contain" />
+      <div className="mt-8 flex justify-center">
+        <img src={imgWhatsAppImage} alt="Logo" className="w-[100px] h-[100px] object-contain" />
       </div>
     </>
   );
